@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/main.css') }}"
+    />  
+    {% block head %}{% endblock %}
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <nav>
+          <ul class="navbar">
+            <li class="navbar"><a class="navbar" href="{{ url_for('index') }}">Home</a></li>
+            <li class="navbar"><a class="navbar" href="{{ url_for('about') }}">About</a></li>
+            <li class="navbar"><a class="navbar" href="{{url_for('posts')}}">Posts</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div>{% block body %}{% endblock %}</div>
+  </body>
+</html>
