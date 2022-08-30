@@ -31,15 +31,28 @@ ul.navbar {
     float: left;
   }
   
-  li a.navbar {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-  
+li.navbar-test{
+  background-color: red;
+}
+
+li a.navbar {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a.navbar-test {
+  color: black;
+}
+
   /* Change the link color to #111 (black) on hover */
   li a.navbar:hover {
     background-color: #111;
+  }
+
+  /* Change the link color to #111 (black) on hover */
+  li a.navbar-test:hover {
+    background-color: rgb(255, 146, 146);
   }

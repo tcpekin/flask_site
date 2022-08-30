@@ -1,5 +1,6 @@
 import sys
-from flask import Flask, render_template
+from flask import Flask, render_template, request
+from flask.helpers import redirect, url_for
 from flask_flatpages import FlatPages, pygments_style_defs
 
 # from flask_frozen import Freezer
@@ -30,9 +31,20 @@ def about():
     return render_template("about.html", content=content)
 
 
-@app.route("/test/")
+@app.route("/test/", methods=['GET','POST'])
 def test():
-    return render_template("test.html")
+    success=False
+    nm=None
+    if request.method == "POST":
+        try:
+            nm = request.form['nm']
+            success=True
+            print(nm)
+        except:
+            print('Stop trying to break the site.')
+        return redirect(url_for('test'))
+    print(success)
+    return render_template("test.html", success=success, nm=nm)
 
 
 @app.route("/posts/")
