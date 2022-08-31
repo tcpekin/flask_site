@@ -31,20 +31,20 @@ def about():
     return render_template("about.html", content=content)
 
 
-@app.route("/test/", methods=['GET','POST'])
+@app.route("/test/", methods=["GET", "POST"])
 def test():
-    success=False
-    nm=None
+    success = False
+    name = None
     if request.method == "POST":
         try:
-            nm = request.form['nm']
-            success=True
-            print(nm)
+            name = request.form["name"]
+            success = True
+            print(name)
         except:
-            print('Stop trying to break the site.')
-        return redirect(url_for('test'))
+            print("Stop trying to break the site.")
+        # return redirect(url_for("test"))
     print(success)
-    return render_template("test.html", success=success, nm=nm)
+    return render_template("test.html", success=success, name=name)
 
 
 @app.route("/posts/")
