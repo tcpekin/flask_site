@@ -3,6 +3,10 @@ from flask import Flask, render_template, request
 from flask.helpers import redirect, url_for
 from flask_flatpages import FlatPages, pygments_style_defs
 
+import py4DSTEM
+import numpy as np
+import matplotlib.pyplot as plt
+
 # from flask_frozen import Freezer
 
 DEBUG = True
@@ -10,6 +14,8 @@ FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = ".md"
 FLATPAGES_ROOT = "content"
 POST_DIR = "posts"
+
+MP_API_KEY='gSuVxl9wuF65iSH0DFGBkPNqzlqj60eD'
 
 app = Flask(__name__)
 flatpages = FlatPages(app)
@@ -31,20 +37,20 @@ def about():
     return render_template("about.html", content=content)
 
 
-@app.route("/test/", methods=["GET", "POST"])
-def test():
-    success = False
-    name = None
-    if request.method == "POST":
+@app.route("/test/")
+@app.route('/test/<structure>')
+def test(structure=None):
+    name = structure
+    print(name)
+    if request.args.get('name') is not None and name is None:
         try:
-            name = request.form["name"]
+            structure = request.args.get('name')
             success = True
             print(name)
         except:
             print("Stop trying to break the site.")
-        # return redirect(url_for("test"))
-    print(success)
-    return render_template("test.html", success=success, name=name)
+    if name is not None: success=True
+    return render_template("test.html", success=success, name=structure)
 
 
 @app.route("/posts/")
