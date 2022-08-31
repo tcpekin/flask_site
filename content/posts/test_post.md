@@ -1,13 +1,6 @@
-title: Should it be YYYY-MM-DD or YYYY-DD-MM? My Thoughts
-date: 2013-08-27
+title: Welcome
+date: 2022-08-29
 
-American-style dates. I know, I know.
+Here's my first blog post - not sure what it'll be used for, but in the end I think it'll be a collection/reference of things I find handy.
 
-You can have:
-
-* Lists
-* More Lists
-
-> And block quotes
-
-    And event highlighted code if you indent :) 
+--Tom
