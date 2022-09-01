@@ -1,15 +1,13 @@
-import sys
 import io
-from flask import Flask, render_template, request, Response
+import sys
+
+import matplotlib.pyplot as plt
+from flask import Flask, Response, render_template, request
 from flask.helpers import redirect, url_for
 from flask_flatpages import FlatPages, pygments_style_defs
-
-import py4DSTEM
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.figure import Figure
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-
+from matplotlib.figure import Figure
+from figs import create_structure_figure, create_dp_figure
 
 # from flask_frozen import Freezer
 
@@ -19,7 +17,6 @@ FLATPAGES_EXTENSION = ".md"
 FLATPAGES_ROOT = "content"
 POST_DIR = "posts"
 
-MP_API_KEY='gSuVxl9wuF65iSH0DFGBkPNqzlqj60eD'
 
 app = Flask(__name__)
 flatpages = FlatPages(app)
@@ -42,35 +39,37 @@ def about():
 
 
 @app.route("/test/")
-@app.route('/test/<structure>')
+@app.route("/test/<structure>")
 def test(structure=None):
-    name = structure
-    print(name)
-    if request.args.get('name') is not None and name is None:
+    structure = structure
+    # print(name)
+    if request.args.get("structure") is not None and structure is None:
         try:
-            structure = request.args.get('name')
+            structure = request.args.get("structure")
             success = True
-            print(name)
         except:
             print("Stop trying to break the site.")
-    if name is not None: success=True
-    return render_template("test.html", success=success, name=structure)
+    if structure is not None:
+        success = True
+    else:
+        success = False
+    return render_template("test.html", success=success, structure=structure)
 
-@app.route('/test/img/plot.png')
-def plot_png():
-    fig = create_figure()
+
+@app.route("/test/img/structure_plot.png")
+def plot_structure_png():
+    fig = create_structure_figure()
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
-    return Response(output.getvalue(), mimetype='image/png')
+    return Response(output.getvalue(), mimetype="image/png")
 
-def create_figure():
-    fig = Figure(dpi=200)
-    axis = fig.add_subplot(1, 1, 1)
-    xs = range(100)
-    ys = [np.random.randint(1, 50) for x in xs]
-    axis.plot(xs, ys)
-    return fig
 
+@app.route("/test/img/dp_plot.png")
+def plot_dp_png():
+    fig = create_dp_figure()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype="image/png")
 
 
 @app.route("/posts/")

@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 
-{% extends "layout.html" %}
+{% extends "layout.html" %} {% block head %}
+<title>Tom Pekin, PhD</title>
 
+{% endblock %} {% block body %}
 
-{% block head %}
-  <title>Tom Pekin, PhD</title>
-  
-{% endblock %}
-
-{% block body %}
-
-<p>Welcome to my very unfinished personal site, I currently don't have an active blog, so the only relevant link above is the <a href="{{ url_for('about') }}">About</a> page!</p>
+<p>
+  Welcome to my very unfinished personal site, I currently don't have an active
+  blog, so the only relevant link above is the
+  <a href="{{ url_for('about') }}">About</a> page!
+</p>
 
 {% endblock %}

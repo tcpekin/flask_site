@@ -1,10 +1,7 @@
 <!DOCTYPE html>
-{% extends 'layout.html' %}
-
-{% block body %}
-<div style="margin-top:8px">
-{{ post.title }}
-{{ post.html|safe }}
-<small>{{ post.date }}</small>
+{% extends 'layout.html' %} {% block body %}
+<div style="margin-top: 8px">
+  {{ post.title }} {{ post.html|safe }}
+  <small>{{ post.date }}</small>
 </div>
 {% endblock %}

@@ -5,11 +5,12 @@
   {% for post in posts %}
   <small>{{ post.date }}</small>
   &nbsp;
-  <a style="display: inline-block;" href="{{ url_for('post', name=post.path.replace('posts/', '')) }}">
+  <a
+    style="display: inline-block"
+    href="{{ url_for('post', name=post.path.replace('posts/', '')) }}"
+  >
     <strong>{{ post.title }}</strong>
   </a>
-  &nbsp;
-  {{ post.description }}
-  {% endfor %}
+  &nbsp; {{ post.description }} {% endfor %}
 </div>
 {% endblock %}

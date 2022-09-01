@@ -4,7 +4,7 @@
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/main.css') }}"
-    />  
+    />
     {% block head %}{% endblock %}
   </head>
 
@@ -13,10 +13,20 @@
       <div>
         <nav>
           <ul class="navbar">
-            <li class="navbar"><a class="navbar" href="{{ url_for('index') }}">Home</a></li>
-            <li class="navbar"><a class="navbar" href="{{ url_for('about') }}">About</a></li>
-            <li class="navbar"><a class="navbar" href="{{url_for('posts')}}">Posts</a></li>
-            <li class="navbar navbar-test"><a class="navbar navbar-test"  href="{{url_for('test')}}">Test Area</a></li>
+            <li class="navbar">
+              <a class="navbar" href="{{ url_for('index') }}">Home</a>
+            </li>
+            <li class="navbar">
+              <a class="navbar" href="{{ url_for('about') }}">About</a>
+            </li>
+            <li class="navbar">
+              <a class="navbar" href="{{url_for('posts')}}">Posts</a>
+            </li>
+            <li class="navbar navbar-test">
+              <a class="navbar navbar-test" href="{{url_for('test')}}"
+                >Test Area</a
+              >
+            </li>
           </ul>
         </nav>
       </div>
