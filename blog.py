@@ -1,11 +1,15 @@
 import sys
-from flask import Flask, render_template, request
+import io
+from flask import Flask, render_template, request, Response
 from flask.helpers import redirect, url_for
 from flask_flatpages import FlatPages, pygments_style_defs
 
 import py4DSTEM
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+
 
 # from flask_frozen import Freezer
 
@@ -51,6 +55,22 @@ def test(structure=None):
             print("Stop trying to break the site.")
     if name is not None: success=True
     return render_template("test.html", success=success, name=structure)
+
+@app.route('/test/img/plot.png')
+def plot_png():
+    fig = create_figure()
+    output = io.BytesIO()
+    FigureCanvas(fig).print_png(output)
+    return Response(output.getvalue(), mimetype='image/png')
+
+def create_figure():
+    fig = Figure(dpi=200)
+    axis = fig.add_subplot(1, 1, 1)
+    xs = range(100)
+    ys = [np.random.randint(1, 50) for x in xs]
+    axis.plot(xs, ys)
+    return fig
+
 
 
 @app.route("/posts/")
