@@ -1,21 +1,36 @@
 <!DOCTYPE html>
 {% extends "layout.html" %} {% block body %}
 
-<form action="/test" method="get">
-  <p>Enter Name:</p>
+<!-- <form action="/test" method="get">
+  <p>Enter a <a href="https://materialsproject.org/">Materials Project</a> identifier (i.e. mp-81):</p>
   <p><input type="text" name="structure" /></p>
   <p><input type="submit" value="submit" /></p>
+</form> -->
+
+<form action="/test" method="get">
+  <p>Choose a crystal structure from the dropdown or enter a <a href="https://materialsproject.org/">Materials Project</a> identifier (i.e. mp-81):</p>
+  <input type="text" list="cars" name="structure" />
+  <datalist id="cars">
+    <option value="mp-81" label="FCC (Au)">asdf</option>
+    <option value="mp-127" label="BCC (Na)"></option>
+    <option value="mp-79" label="HCP (Ti)"></option>
+    <option value="mp-2658" label="interpenetrating Simple Cubic (AlFe)"></option>
+    <option value="mp-149" label="Diamond Cubic (Si)"></option>
+    <option value="mp-22862" label="interpenetrating FCC (NaCl)"></option>
+  </datalist>
+  <input type="submit" value="submit" />
 </form>
 
 <!-- <br> -->
 {% if success == True %}
-<p>My name is {{structure}}.</p>
+<p>The structure is <a href="{{'https://materialsproject.org/materials/{}'.format(structure)}}">{{structure}}</a> and the zone axis is [111].</p>
+
 <div class="img_row">
-  <div class="img_col">
-    <img src="/test/img/structure_plot.png" alt="Crystal Structure" />
+  <div class="img_col_l">
+    <img src="{{'/test/img/{}_dp_plot.png'.format(structure)}}" alt="Diffraction Pattern" />
   </div>
-  <div class="img_col">
-    <img src="/test/img/dp_plot.png" alt="Diffraction Pattern" />
+  <div class="img_col_r">
+    <img src="{{'/test/img/{}_structure_plot.png'.format(structure)}}" alt="Crystal Structure" margin_top=20% />
   </div>
 </div>
 {% else %} {% endif %} {% endblock %}

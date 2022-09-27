@@ -58,15 +58,22 @@ li a.navbar-test:hover {
 }
 
 /* Three image containers (use 25% for four, and 50% for two, etc) */
-.img_col {
-  /* float: left; */
-  height: 300px;
+.img_col_l {
+  float: left;
+  width: 66.66%;
   padding: 5px;
+}
+
+.img_col_r {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+  padding-top: 10%;
 }
 
 .img_row {
   display: flex;
-  align-items: center;
+  align-items: left;
   justify-content: center;
 }
 

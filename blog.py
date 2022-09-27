@@ -38,8 +38,8 @@ def about():
     return render_template("about.html", content=content)
 
 
+# @app.route("/test/<structure>")
 @app.route("/test/")
-@app.route("/test/<structure>")
 def test(structure=None):
     structure = structure
     # print(name)
@@ -56,19 +56,21 @@ def test(structure=None):
     return render_template("test.html", success=success, structure=structure)
 
 
-@app.route("/test/img/structure_plot.png")
-def plot_structure_png():
-    fig = create_structure_figure()
+@app.route("/test/img/<structure>_structure_plot.png")
+def plot_structure_png(structure=None):
+    fig = create_structure_figure(structure=structure)
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
+    plt.close(fig)
     return Response(output.getvalue(), mimetype="image/png")
 
 
-@app.route("/test/img/dp_plot.png")
-def plot_dp_png():
-    fig = create_dp_figure()
+@app.route("/test/img/<structure>_dp_plot.png")
+def plot_dp_png(structure=None):
+    fig = create_dp_figure(structure=structure)
     output = io.BytesIO()
     FigureCanvas(fig).print_png(output)
+    plt.close(fig)
     return Response(output.getvalue(), mimetype="image/png")
 
 
