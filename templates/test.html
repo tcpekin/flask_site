@@ -1,36 +1,59 @@
 <!DOCTYPE html>
 {% extends "layout.html" %} {% block body %}
 
-<!-- <form action="/test" method="get">
-  <p>Enter a <a href="https://materialsproject.org/">Materials Project</a> identifier (i.e. mp-81):</p>
-  <p><input type="text" name="structure" /></p>
-  <p><input type="submit" value="submit" /></p>
-</form> -->
-
 <form action="/test" method="get">
-  <p>Choose a crystal structure from the dropdown or enter a <a href="https://materialsproject.org/">Materials Project</a> identifier (i.e. mp-81):</p>
-  <input type="text" list="cars" name="structure" />
+  <p>
+    Choose a crystal structure from the dropdown box or enter a
+    <a href="https://materialsproject.org/">Materials Project</a> identifier
+    (i.e. mp-81), as well as a three digit number <em>hkl</em> or for more
+    complex orientations, a comma-separated <em>h,k,l</em> zone axis:
+  </p>
+  <input
+    type="text"
+    list="cars"
+    name="structure"
+    placeholder="mp-81"
+    {% if structure is not none %} 
+    value="{{'{}'.format(structure)}}" 
+    {% endif %}
+  />
   <datalist id="cars">
     <option value="mp-81" label="FCC (Au)">asdf</option>
     <option value="mp-127" label="BCC (Na)"></option>
     <option value="mp-79" label="HCP (Ti)"></option>
-    <option value="mp-2658" label="interpenetrating Simple Cubic (AlFe)"></option>
+    <option
+      value="mp-2658"
+      label="interpenetrating Simple Cubic (AlFe)"
+    ></option>
     <option value="mp-149" label="Diamond Cubic (Si)"></option>
     <option value="mp-22862" label="interpenetrating FCC (NaCl)"></option>
   </datalist>
+
+  <input type="text" name="zone_axis" placeholder="1,1,1 (h,k,l)" />
+
   <input type="submit" value="submit" />
 </form>
 
 <!-- <br> -->
 {% if success == True %}
-<p>The structure is <a href="{{'https://materialsproject.org/materials/{}'.format(structure)}}">{{structure}}</a> and the zone axis is [111].</p>
+<p>
+  The structure is
+  <a href="{{'https://materialsproject.org/materials/{}'.format(structure)}}"
+    >{{structure}}</a
+  >
+  and the zone axis is {{h}}{{k}}{{l}}.
+</p>
 
 <div class="img_row">
-  <div class="img_col_l">
-    <img src="{{'/test/img/{}_dp_plot.png'.format(structure)}}" alt="Diffraction Pattern" />
-  </div>
-  <div class="img_col_r">
-    <img src="{{'/test/img/{}_structure_plot.png'.format(structure)}}" alt="Crystal Structure" margin_top=20% />
-  </div>
+  <img
+    class="img_col_l"
+    src="{{'/test/img/{}_{}_{}_{}_dp_plot.png'.format(structure, h,k,l)}}"
+    alt="Diffraction Pattern"
+  />
+  <img
+    class="img_col_r"
+    src="{{'/test/img/{}_{}_{}_{}_structure_plot.png'.format(structure, h,k,l)}}"
+    alt="Crystal Structure"
+  />
 </div>
 {% else %} {% endif %} {% endblock %}

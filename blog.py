@@ -5,7 +5,9 @@ import matplotlib.pyplot as plt
 from flask import Flask, Response, render_template, request
 from flask.helpers import redirect, url_for
 from flask_flatpages import FlatPages, pygments_style_defs
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+
+# from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.backends.backend_svg import FigureCanvasSVG as FigureCanvas
 from matplotlib.figure import Figure
 from figs import create_structure_figure, create_dp_figure
 
@@ -40,43 +42,61 @@ def about():
 
 # @app.route("/test/<structure>")
 @app.route("/test/")
-def test(structure=None):
-    structure = structure
-    # print(name)
+def test(structure=None, zone_axis=None):
+    print(zone_axis)
     if request.args.get("structure") is not None and structure is None:
         try:
             structure = request.args.get("structure")
             success = True
         except:
             print("Stop trying to break the site.")
+    if request.args.get("zone_axis") is not None and zone_axis is None:
+        try:
+            zone_axis = request.args.get("zone_axis")
+            if len(zone_axis) is 3:
+                zone_axis = [int(i) for i in zone_axis]
+            else:
+                zone_axis = [int(i) for i in zone_axis.split(",")]
+            success = True
+        except:
+            zone_axis = [1, 1, 1]
+    else:
+        zone_axis = [1, 1, 1]
     if structure is not None:
         success = True
     else:
         success = False
-    return render_template("test.html", success=success, structure=structure)
+
+    h, k, l = zone_axis
+    return render_template(
+        "test.html", success=success, structure=structure, h=h, k=k, l=l
+    )
 
 
-@app.route("/test/img/<structure>_structure_plot.png")
-def plot_structure_png(structure=None):
-    fig = create_structure_figure(structure=structure)
+@app.route("/test/img/<structure>_<h>_<k>_<l>_structure_plot.png")
+def plot_structure_png(structure=None, h=None, k=None, l=None):
+    zone_axis = [int(h), int(k), int(l)]
+    fig = create_structure_figure(structure=structure, zone_axis=zone_axis)
     output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
+    FigureCanvas(fig).print_svg(output)
     plt.close(fig)
-    return Response(output.getvalue(), mimetype="image/png")
+    return Response(output.getvalue(), mimetype="image/svg+xml")
 
 
-@app.route("/test/img/<structure>_dp_plot.png")
-def plot_dp_png(structure=None):
-    fig = create_dp_figure(structure=structure)
+@app.route("/test/img/<structure>_<h>_<k>_<l>_dp_plot.png")
+def plot_dp_png(structure=None, h=None, k=None, l=None):
+    zone_axis = [int(h), int(k), int(l)]
+    fig = create_dp_figure(structure=structure, zone_axis=zone_axis)
     output = io.BytesIO()
-    FigureCanvas(fig).print_png(output)
+    FigureCanvas(fig).print_svg(output)
     plt.close(fig)
-    return Response(output.getvalue(), mimetype="image/png")
+    return Response(output.getvalue(), mimetype="image/svg+xml")
 
 
 @app.route("/posts/")
 def posts():
     posts = [p for p in flatpages if p.path.startswith(POST_DIR)]
+    print(posts)
     posts.sort(key=lambda item: item["date"], reverse=False)
     return render_template("posts.html", posts=posts)
 

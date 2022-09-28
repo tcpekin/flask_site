@@ -59,27 +59,25 @@ li a.navbar-test:hover {
 
 /* Three image containers (use 25% for four, and 50% for two, etc) */
 .img_col_l {
-  float: left;
-  width: 66.66%;
-  padding: 5px;
+  flex: 2.5;
+  overflow: auto;
 }
 
 .img_col_r {
-  float: left;
-  width: 33.33%;
-  padding: 5px;
-  padding-top: 10%;
+  flex: 1;
+  overflow: auto;
 }
 
 .img_row {
   display: flex;
-  align-items: left;
-  justify-content: center;
+  width: 45em;
+  max-width: 100%;
+  /* align-items: flex-start; */
 }
 
 /* Clear floats after image containers */
-.img_row::after {
+/* .img_row::after {
   content: "";
   clear: both;
   display: table;
-}
+} */
