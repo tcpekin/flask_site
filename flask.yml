@@ -1,0 +1,12 @@
+name: flask
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3
+  - py4dstem
+  - flask
+  - flask-flatpages
+  - python-dotenv
+  - pymatgen
+prefix: ./envs/flask

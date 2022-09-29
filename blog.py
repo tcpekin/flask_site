@@ -53,10 +53,11 @@ def test(structure=None, zone_axis=None):
     if request.args.get("zone_axis") is not None and zone_axis is None:
         try:
             zone_axis = request.args.get("zone_axis")
-            if len(zone_axis) is 3:
+            if len(zone_axis) == 3:
                 zone_axis = [int(i) for i in zone_axis]
             else:
                 zone_axis = [int(i) for i in zone_axis.split(",")]
+                assert len(zone_axis) == 3
             success = True
         except:
             zone_axis = [1, 1, 1]
@@ -110,6 +111,8 @@ def post(name):
 
 
 if __name__ == "__main__":
+    # this only runs if we run python blog.py from the CLI, not flask --app run blog, as then __name__ is 'blog'
+    # Both ways are supported but I think the latter is better. Debug stuff goes  then in CLI arguments or env variables.
     if len(sys.argv) > 1 and sys.argv[1] == "build":
         # freezer.freeze()
         pass
