@@ -2,7 +2,7 @@ This is my personal site built using Flask.
 
 # Build Notes
 
-## How to create a conda lockfile from a Mac to a Linux server
+## How to create a [conda lockfile](https://github.com/conda-incubator/conda-lock) from a Mac to a Linux server
 
 ```sh
 # Install `conda-lock` in the correct conda environment.
@@ -56,6 +56,29 @@ This will output a file titled `conda-linux-64.lock`.
       ranges, etc. See documentation)
    4. `python-docker` is simply the tag of our image when we built it.
 
+After all this, I have switched to a Docker compose style deployment. Why is
+this? It is because Docker containers (to my knowledge) can only run/be left
+running with one command that speaks to the outside world. I needed therefore
+two containers, 1 for the app and 1 for nginx, to pass things to the app. This
+is a multicontainer deployment, and it gets hard to manage this using the CLI. A
+compose file, one for local development and one for production is the path
+forward. In that, you can expose ports (`expose`d ports only talk to other
+containers, not the outside world, unlike `publish`ed ports), provide platform
+names, and set container dependencies. It makes making the containers talk to
+each other much simpler actually, but then you need to write more slightly more
+code.
+
+Once I decided on this, it is relatively simpler to get the application/website
+up and running - to build and run I simply call
+`docker compose -f docker-compose.dev.yaml up --build`, and to take down,
+`docker compose -f docker-compose.dev.yaml down -v`. Everything else is defined
+in the config file. Some details are shown
+[here](https://www.python4networkengineers.com/posts/python-intermediate/how_to_run_an_app_with_docker/).
+
+Useful links:
+
+- [How to shrink `conda` docker builds](https://uwekorn.com/2021/03/01/deploying-conda-environments-in-docker-how-to-do-it-right.html)
+
 ## Flask notes
 
 1. There is a difference between running `python app.py` and
@@ -81,6 +104,10 @@ This will output a file titled `conda-linux-64.lock`.
    to publish/pass through the correct ports:
    `docker run --platform linux/amd64 --rm --publish 5001:5001 python-docker`
 
+I am not sure yet if I need to
+[deal with proxy headers](https://flask.palletsprojects.com/en/2.2.x/deploying/proxy_fix/)
+on the Flask side of things.
+
 ## Gunicorn notes
 
 1. We use `gunicorn` to actually server our content, and not the development
@@ -90,13 +117,39 @@ This will output a file titled `conda-linux-64.lock`.
    bind a specific port, to keep things still always on `5001`. Finally, we run
    our app in `blog.py` by finishing with `blog:app`.
 
-
 ## Nginx notes
 
-I still have no idea at all how to use nginx. It seems 1000% arcane. 
+I still have no idea at all how to use nginx. It seems 1000% arcane.
+`proxy_pass` started working after I put a trailing slash on the `proxy_pass`
+address.
+
+I believe it works (in Docker) by defining an upstream server and port
+(`flask_site` and `web:5001` in our case, where web is the name of the _Docker_
+container. How it knows this I have no idea). Then nginx listens for anything on
+port 80 (default port for `https`), and then passes it to `flask_site`, defined
+upstream. Some headers are set, not sure what they do.
+
+In order to make this work, I had to make a separate nginx container, located in
+`services/nginx`, with its own Dockerfile and a `nginx.conf` file that replaces
+the default. This _seemed_ to work.
+
+Useful links:
+
+- [`proxy_pass` info](https://dev.to/danielkun/nginx-everything-about-proxypass-2ona)
+- [Difference between `0.0.0.0`, `127.0.0.1` and `localhost`](https://stackoverflow.com/questions/20778771/what-is-the-difference-between-0-0-0-0-127-0-0-1-and-localhost)
+- [Reverse proxy docs](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+- [Configuring nginx for a Flask application](https://www.patricksoftwareblog.com/how-to-configure-nginx-for-a-flask-web-application/)
+- [How to use the official nginx image](https://www.docker.com/blog/how-to-use-the-official-nginx-docker-image/)
+- [How to use nginx with Flask](https://linuxhint.com/use-nginx-with-flask/)
 
 ## Cloud notes
 
 I've chosen the Oracle free tier for hosting. To get the virtual private server
 (VPS) speaking to the outside world I used
 [this tutorial](https://docs.oracle.com/en-us/iaas/developer-tutorials/tutorials/apache-on-ubuntu/01oci-ubuntu-apache-summary.htm).
+
+Other useful links:
+
+- [Ubuntu+Docker on Oracle Cloud](https://medium.com/oracledevs/run-always-free-docker-container-on-oracle-cloud-infrastructure-c88e36b65610)
+- [Install Docker on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+- [Fix Docker permissions](https://www.digitalocean.com/community/questions/how-to-fix-docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket)
