@@ -80,3 +80,23 @@ This will output a file titled `conda-linux-64.lock`.
    This is ok (not sure if it is the best). Then, you can use Docker as before
    to publish/pass through the correct ports:
    `docker run --platform linux/amd64 --rm --publish 5001:5001 python-docker`
+
+## Gunicorn notes
+
+1. We use `gunicorn` to actually server our content, and not the development
+   Flask server. This changes our `CMD` to
+   `CMD [ "/opt/env/bin/gunicorn", "-w", "2", "--bind", "0.0.0.0:5001", "blog:app" ]`.
+   The main differences are that we can have a number of workers, `-w`, and we
+   bind a specific port, to keep things still always on `5001`. Finally, we run
+   our app in `blog.py` by finishing with `blog:app`.
+
+
+## Nginx notes
+
+I still have no idea at all how to use nginx. It seems 1000% arcane. 
+
+## Cloud notes
+
+I've chosen the Oracle free tier for hosting. To get the virtual private server
+(VPS) speaking to the outside world I used
+[this tutorial](https://docs.oracle.com/en-us/iaas/developer-tutorials/tutorials/apache-on-ubuntu/01oci-ubuntu-apache-summary.htm).
