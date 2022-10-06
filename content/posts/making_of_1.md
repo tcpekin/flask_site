@@ -1,5 +1,5 @@
 ---
-title: The making of this blog, Part 1
+title: The making of this blog, part 1
 date: 2022-10-06
 description: Why I chose to make this site and some initial thoughts.
 tags: [python, web, making_of, diffraction, py4dstem]
@@ -11,7 +11,7 @@ were available. I didn't want to just buy some template that someone else had
 made and fill in some boxes with text, but rather understand the whole process
 of how computers talk to each other.
 
-Previously, I had tried a static site generator (Hugo) before, but that felt
+Previously, I had tried a static site generator (Jekyll) before, but that felt
 relatively limited and left me with some open questions, like how does HTML and
 CSS work and what do I do if I want dynamic content? I had also tried
 fruitlessly for a while to make a NextJS app, which has what seems like a great
@@ -20,23 +20,25 @@ components. This ended up being too complicated. To someone with no web dev
 experience, Javascript and diving into the deep end w/ a React-like framework
 was just too difficult.
 
-Much of my day job as a researcher is spent using Python, and I consider myself
-quite comfortable in the language. For this reason, for the latest (current)
-attempt, I decided to go with Flask, a Python based framework for the web. It is
-described as "lighter" than the other main Python framework, Django, and
-therefore I hoped it would be simpler. It has the ability to turn Markdown files
-into blog pages, but also run Python code in the backend, which was a
-requirement for what I wanted the site to be able to do. With the main framework
-decided, I started pieceing together different blog posts and tutorials, in
-order to begin to make my site.
+Much of my day job as a researcher is spent using Python, and I'm pretty
+comfortable in the language. For this reason, for the latest (current) attempt,
+I decided to go with [Flask](https://flask.palletsprojects.com/en/2.2.x/), a
+Python based framework for the web. It is described as "lighter" than the other
+main Python framework, Django, and therefore I hoped it would be simpler. It has
+the ability to turn Markdown files into blog pages, but also run Python code in
+the backend, which was a requirement for what I wanted the site to be able to
+do. With the main framework decided, I started pieceing together different blog
+posts and tutorials, in order to begin to make my site.
 
 My goals were initially simple, and fairly naive. I wanted to have a home page,
 an about page with a description about myself, a blog section, with posts,
 including tags and dates, and a section for simulating TEM selected area
 diffraction patterns.
 
-<!-- ![zadp](../../static/assets/profile.png) -->
-<!-- insert image here -->
+<figure>
+<img src="../../static/assets/img/zone_axis_image.png" alt="drawing" width="400px"/>
+<figcaption> <b>Fig. 1</b> An experimental zone axis diffraction pattern used to determine orientation. </figcaption>
+</figure>
 
 The simulation of diffraction patterns was key - there used to be a website
 called TEMMaps (I think) that was invaluable to me as a graduate student. Often,
@@ -56,13 +58,13 @@ right zone axis.
 
 However, this site was shut down about 5 years ago, and I have never found a
 good replacement for quick, reliable diffraction pattern simulations to be used
-while you were operating the microscope. Other solutions exist - there is a
-whole family of paid and open source software simply for crystallography, but
-they require either expensive licenses, or to work in Python or Matlab, which is
+while you were operating the microscope. Other tools exist - there is a whole
+family of paid and open source software simply for crystallography, but they
+require either expensive licenses, or to work in Python or Matlab, which is
 often a pain to set up while you're trying to figure out what is going on in the
 microscope. They also are much more complex than what is needed in the moment -
 all you want is a picture to compare with, not the whole wealth of information
-that the other tools can provide, not to mention needing to find the correct
+that the other tools can provide, not to mention you need to find the correct
 input file that accurately represents your crystal system.
 
 The goal was therefore to make this much simpler, and bring back what TEMMaps
