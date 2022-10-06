@@ -36,7 +36,7 @@ including tags and dates, and a section for simulating TEM selected area
 diffraction patterns.
 
 <figure>
-<img src="../../static/assets/img/zone_axis_image.png" alt="drawing" width="400px"/>
+<img src="../../static/assets/img/zone_axis_image.png" alt="diffraction patterns" width="400px"/>
 <figcaption> <b>Fig. 1</b> An experimental zone axis diffraction pattern used to determine orientation. </figcaption>
 </figure>
 
@@ -55,6 +55,11 @@ just type in a crystal structure, an orientation, and it would simulate the
 diffraction pattern. By simply comparing to what you had on the microscope
 screen or camera in front of you, you could quickly determine if you were in the
 right zone axis.
+
+<figure>
+<img src="../../static/assets/img/zone_axis_book.jpeg" alt="book of diffraction patterns" width="500px"/>
+<figcaption> <b>Fig. 1</b> A picture from the best resource for diffraction pattern matching: <em>Practical Electron Microscopy in Materials Science</em>, by J. W. Edington. (Right-click and open in new tab/window to enlarge.) </figcaption>
+</figure>
 
 However, this site was shut down about 5 years ago, and I have never found a
 good replacement for quick, reliable diffraction pattern simulations to be used
