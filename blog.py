@@ -40,9 +40,9 @@ def about():
     return render_template("about.html", content=content)
 
 
-# @app.route("/test/<structure>")
-@app.route("/test/")
-def test(structure=None, zone_axis=None):
+# @app.route("/dp_sim/<structure>")
+@app.route("/dp_sim/")
+def dp_sim(structure=None, zone_axis=None):
     print(zone_axis)
     if request.args.get("structure") is not None and structure is None:
         try:
@@ -70,11 +70,11 @@ def test(structure=None, zone_axis=None):
 
     h, k, l = zone_axis
     return render_template(
-        "test.html", success=success, structure=structure, h=h, k=k, l=l
+        "dp_sim.html", success=success, structure=structure, h=h, k=k, l=l
     )
 
 
-@app.route("/test/img/<structure>_<h>_<k>_<l>_structure_plot.png")
+@app.route("/dp_sim/img/<structure>_<h>_<k>_<l>_structure_plot.png")
 def plot_structure_png(structure=None, h=None, k=None, l=None):
     zone_axis = [int(h), int(k), int(l)]
     fig = create_structure_figure(structure=structure, zone_axis=zone_axis)
@@ -84,7 +84,7 @@ def plot_structure_png(structure=None, h=None, k=None, l=None):
     return Response(output.getvalue(), mimetype="image/svg+xml")
 
 
-@app.route("/test/img/<structure>_<h>_<k>_<l>_dp_plot.png")
+@app.route("/dp_sim/img/<structure>_<h>_<k>_<l>_dp_plot.png")
 def plot_dp_png(structure=None, h=None, k=None, l=None):
     zone_axis = [int(h), int(k), int(l)]
     fig = create_dp_figure(structure=structure, zone_axis=zone_axis)
@@ -98,7 +98,7 @@ def plot_dp_png(structure=None, h=None, k=None, l=None):
 def posts():
     posts = [p for p in flatpages if p.path.startswith(POST_DIR)]
     print(posts)
-    posts.sort(key=lambda item: item["date"], reverse=False)
+    posts.sort(key=lambda item: item["date"], reverse=True)
     return render_template("posts.html", posts=posts)
 
 
@@ -108,6 +108,11 @@ def post(name):
     print(path + "hkhk", file=sys.stderr)
     post = flatpages.get_or_404(path)
     return render_template("post.html", post=post)
+
+@app.route('/tag/<string:tag>/')
+def tag(tag):
+    tagged = [p for p in flatpages if tag in p.meta.get('tags', [])]
+    return render_template('tags.html', pages=tagged, tag=tag)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 {% extends 'layout.html' %} {% block body %}
 <div style="margin-top: 8px">
-  {{ post.title }} {{ post.html|safe }}
-  <small>{{ post.date }}</small>
+  <h2>{{ post.title }}</h2>
+
+  {{ post.html|safe }}
+
+  <small> {{ post.date }} <br />
+    {% for post_tag in post.meta.tags %}
+      <a href="{{ url_for("tag", tag=post_tag) }}">{{ post_tag }}</a>
+    {% endfor %}
+  </small
+  >
 </div>
 {% endblock %}

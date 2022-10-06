@@ -3,7 +3,7 @@
 
 <div style="margin-top: 8px">
   {% for post in posts %}
-  <small>{{ post.date }}</small>
+  <p><small>{{ post.date }}</small>
   &nbsp;
   <a
     style="display: inline-block"
@@ -11,6 +11,6 @@
   >
     <strong>{{ post.title }}</strong>
   </a>
-  &nbsp; {{ post.description }} {% endfor %}
+  &nbsp; {{ post.description }}</p> {% endfor %}
 </div>
 {% endblock %}

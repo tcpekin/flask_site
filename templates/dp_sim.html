@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% extends "layout.html" %} {% block body %}
 
-<form action="/test" method="get">
+<form action="/dp_sim" method="get">
   <p>
     Choose a crystal structure from the dropdown box or enter a
     <a href="https://materialsproject.org/">Materials Project</a> identifier
@@ -15,9 +15,17 @@
     placeholder="mp-81"
     pattern="mp-\d*"
     title="It should be something like mp-####"
-    {% if structure is not none %} 
-    value="{{'{}'.format(structure)}}" 
-    {% endif %}
+    {%
+    if
+    structure
+    is
+    not
+    none
+    %}
+    value="{{'{}'.format(structure)}}"
+    {%
+    endif
+    %}
     required
   />
   <datalist id="structures">
@@ -50,12 +58,12 @@
 <div class="img_row">
   <img
     class="img_col_l"
-    src="{{'/test/img/{}_{}_{}_{}_dp_plot.png'.format(structure, h,k,l)}}"
+    src="{{'/dp_sim/img/{}_{}_{}_{}_dp_plot.png'.format(structure, h,k,l)}}"
     alt="Diffraction Pattern"
   />
   <img
     class="img_col_r"
-    src="{{'/test/img/{}_{}_{}_{}_structure_plot.png'.format(structure, h,k,l)}}"
+    src="{{'/dp_sim/img/{}_{}_{}_{}_structure_plot.png'.format(structure, h,k,l)}}"
     alt="Crystal Structure"
   />
 </div>

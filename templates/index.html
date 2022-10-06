@@ -6,9 +6,10 @@
 {% endblock %} {% block body %}
 
 <p>
-  Welcome to my very unfinished personal site, I currently don't have an active
-  blog, so the only relevant link above is the
-  <a href="{{ url_for('about') }}">About</a> page!
+  A place for <a href="{{url_for('posts')}}">notes</a>,
+  <a href="{{url_for('dp_sim')}}">experiments</a>, and a little bit
+  <a href="{{url_for('about')}}">about</a> myself.
 </p>
+<p>As always, a work in progress.</p>
 
 {% endblock %}

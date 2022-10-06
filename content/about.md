@@ -27,10 +27,6 @@ reliably reconstruct amorphous and/or beam sensitive samples.
 Outside of work I enjoy live music, various water sports, coding, and learning
 German.
 
-This site is currently in beta and under development while I learn what I’m
-doing. I have been learning a lot about web dev. Please do not take it as any
-sort of finished product.
-
 <a target="_blank" href="static/assets/Tom_Pekin_Short_Resume.pdf">
 resume
 <img
