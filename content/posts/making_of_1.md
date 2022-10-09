@@ -36,7 +36,9 @@ including tags and dates, and a section for simulating TEM selected area
 diffraction patterns.
 
 <figure>
-<img src="../../static/assets/img/zone_axis_image.png" alt="diffraction patterns" width="400px"/>
+<a href="{{ url_for('static', filename='assets/img/making_of_1/zone_axis_image.png') }}">
+<img src="{{ url_for('static', filename='assets/img/making_of_1/zone_axis_image.png') }}" alt="diffraction patterns" width="400px"/>
+</a>
 <figcaption> <b>Fig. 1</b> An experimental zone axis diffraction pattern used to determine orientation. </figcaption>
 </figure>
 
@@ -57,8 +59,10 @@ screen or camera in front of you, you could quickly determine if you were in the
 right zone axis.
 
 <figure>
-<img src="../../static/assets/img/zone_axis_book.jpeg" alt="book of diffraction patterns" width="500px"/>
-<figcaption> <b>Fig. 1</b> A picture from the best resource for diffraction pattern matching: <em>Practical Electron Microscopy in Materials Science</em>, by J. W. Edington. (Right-click and open in new tab/window to enlarge.) </figcaption>
+<a href="{{ url_for('static', filename='/assets/img/making_of_1/zone_axis_book.jpeg') }}">
+<img src="{{ url_for('static', filename='/assets/img/making_of_1/zone_axis_book.jpeg') }}" alt="book of diffraction patterns" width="500px"/>
+</a>
+<figcaption> <b>Fig. 2</b> A picture from the best resource for diffraction pattern matching: <em>Practical Electron Microscopy in Materials Science</em>, by J. W. Edington. (Right-click and open in new tab/window to enlarge.) </figcaption>
 </figure>
 
 However, this site was shut down about 5 years ago, and I have never found a

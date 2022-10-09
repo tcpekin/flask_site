@@ -2,9 +2,10 @@ import io
 import sys
 
 import matplotlib.pyplot as plt
-from flask import Flask, Response, render_template, request
+from flask import Flask, Response, render_template, request, render_template_string
 from flask.helpers import redirect, url_for
-from flask_flatpages import FlatPages, pygments_style_defs
+from flask_flatpages import FlatPages
+from flask_flatpages.utils import pygmented_markdown
 
 # from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.backends.backend_svg import FigureCanvasSVG as FigureCanvas
@@ -19,8 +20,13 @@ FLATPAGES_EXTENSION = ".md"
 FLATPAGES_ROOT = "content"
 POST_DIR = "posts"
 
+def my_renderer(text):
+    prerendered_body = render_template_string(text)
+    return pygmented_markdown(prerendered_body)
+
 
 app = Flask(__name__)
+app.config['FLATPAGES_HTML_RENDERER'] = my_renderer
 flatpages = FlatPages(app)
 # freezer = Freezer(app)
 app.config.from_object(__name__)
@@ -97,7 +103,7 @@ def plot_dp_png(structure=None, h=None, k=None, l=None):
 @app.route("/posts/")
 def posts():
     posts = [p for p in flatpages if p.path.startswith(POST_DIR)]
-    print(posts)
+    # print(posts)
     posts.sort(key=lambda item: item["date"], reverse=True)
     return render_template("posts.html", posts=posts)
 
@@ -105,7 +111,6 @@ def posts():
 @app.route("/posts/<name>/")
 def post(name):
     path = "{}/{}".format(POST_DIR, name)
-    print(path + "hkhk", file=sys.stderr)
     post = flatpages.get_or_404(path)
     return render_template("post.html", post=post)
 
