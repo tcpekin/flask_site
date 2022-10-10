@@ -1,5 +1,12 @@
 <!DOCTYPE html>
-{% extends 'layout.html' %} {% block body %}
+
+{% extends 'layout.html' %} 
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('pygments_css') }}">
+{%  endblock %}
+
+{% block body %}
 <div style="margin-top: 8px">
   <h1>{{ post.title }}</h1>
 

@@ -2,39 +2,49 @@ import io
 import sys
 
 import matplotlib.pyplot as plt
-from flask import Flask, Response, render_template, request, render_template_string
+from flask import Flask, Response, render_template, render_template_string, request
 from flask.helpers import redirect, url_for
-from flask_flatpages import FlatPages
+from flask_flatpages import FlatPages, pygments_style_defs
 from flask_flatpages.utils import pygmented_markdown
+
+# from flask_frozen import Freezer
 
 # from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.backends.backend_svg import FigureCanvasSVG as FigureCanvas
 from matplotlib.figure import Figure
-from figs import create_structure_figure, create_dp_figure
 
-# from flask_frozen import Freezer
+from figs import create_dp_figure, create_structure_figure
+
 
 DEBUG = True
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = ".md"
 FLATPAGES_ROOT = "content"
+FLATPAGES_MARKDOWN_EXTENSIONS = ["codehilite", "fenced_code"]
 POST_DIR = "posts"
+
 
 def my_renderer(text):
     prerendered_body = render_template_string(text)
-    return pygmented_markdown(prerendered_body)
+    print(prerendered_body)
+    return pygmented_markdown(prerendered_body, flatpages=flatpages)
 
 
 app = Flask(__name__)
-app.config['FLATPAGES_HTML_RENDERER'] = my_renderer
 flatpages = FlatPages(app)
+# the following line must come after defining flatpages!
+app.config["FLATPAGES_HTML_RENDERER"] = my_renderer
 # freezer = Freezer(app)
 app.config.from_object(__name__)
 
 
+@app.route("/pygments.css")
+def pygments_css():
+    return pygments_style_defs("tango"), 200, {"Content-Type": "text/css"}
+
+
 @app.route("/")
 def index():
-
     return render_template("index.html")
 
 
@@ -114,10 +124,11 @@ def post(name):
     post = flatpages.get_or_404(path)
     return render_template("post.html", post=post)
 
-@app.route('/tag/<string:tag>/')
+
+@app.route("/tag/<string:tag>/")
 def tag(tag):
-    tagged = [p for p in flatpages if tag in p.meta.get('tags', [])]
-    return render_template('tags.html', pages=tagged, tag=tag)
+    tagged = [p for p in flatpages if tag in p.meta.get("tags", [])]
+    return render_template("tags.html", pages=tagged, tag=tag)
 
 
 if __name__ == "__main__":

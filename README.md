@@ -23,15 +23,15 @@ This will output a file titled `conda-linux-64.lock`.
    for later execution in containers.
 2. When you execute code, you use a container. A container is based off an
    image, and then runs the `CMD` line.
-   1. Since this is our flask server, it does not return. Otherwise it returns
-      and (I think) exits.
+    1. Since this is our flask server, it does not return. Otherwise it returns
+       and (I think) exits.
 3. Use `conda` to install everything, using the lockfile.
-   1. Give it a prefix with the `-p` argument.
-   2. Reference it later in the `CMD` line by its full path - this is simplest.
+    1. Give it a prefix with the `-p` argument.
+    2. Reference it later in the `CMD` line by its full path - this is simplest.
 4. `ADD` vs. `COPY`
-   1. `ADD` has some extra magic, mainly extracting `.tar.gz` files, and the
-      ability to add things from URLs. s
-   2. `COPY` is preferred and is simpler to understand.
+    1. `ADD` has some extra magic, mainly extracting `.tar.gz` files, and the
+       ability to add things from URLs. s
+    2. `COPY` is preferred and is simpler to understand.
 5. To build a Docker image, first create a Dockerfile. This feels very arcane to
    me. In the Dockerfile, you set up your computing infrastructure - use a
    `FROM` statement to base your image off another (like getting Ubuntu or
@@ -47,21 +47,21 @@ This will output a file titled `conda-linux-64.lock`.
    `docker exec -it <name> /bin/bash`, which then drops you into a terminal.
 9. To run the container on an M1 Mac, run
    `docker run --platform linux/amd64 --rm --publish 5001:5001 python-docker`.
-   1. The `--platform` part is required to run on the M1 chip, I don't know
-      exactly why
-   2. `--rm` removes the container after shutdown, otherwise it just hangs
-      around.
-   3. `--publish local_port:container_port` links the two ports, and the local
-      port comes first. This can be more complex (auto-assignment, assigning
-      ranges, etc. See documentation)
-   4. `python-docker` is simply the tag of our image when we built it.
+    1. The `--platform` part is required to run on the M1 chip, I don't know
+       exactly why
+    2. `--rm` removes the container after shutdown, otherwise it just hangs
+       around.
+    3. `--publish local_port:container_port` links the two ports, and the local
+       port comes first. This can be more complex (auto-assignment, assigning
+       ranges, etc. See documentation)
+    4. `python-docker` is simply the tag of our image when we built it.
 
 After all this, I have switched to a Docker compose style deployment. Why is
 this? It is because Docker containers (to my knowledge) can only run/be left
 running with one command that speaks to the outside world. I needed therefore
 two containers, 1 for the app and 1 for nginx, to pass things to the app. This
-is a multicontainer deployment, and it gets hard to manage this using the CLI. A
-compose file, one for local development and one for production is the path
+is a multi-container deployment, and it gets hard to manage this using the CLI.
+A compose file, one for local development and one for production is the path
 forward. In that, you can expose ports (`expose`d ports only talk to other
 containers, not the outside world, unlike `publish`ed ports), provide platform
 names, and set container dependencies. It makes making the containers talk to
@@ -77,7 +77,7 @@ in the config file. Some details are shown
 
 Useful links:
 
-- [How to shrink `conda` docker builds](https://uwekorn.com/2021/03/01/deploying-conda-environments-in-docker-how-to-do-it-right.html)
+-   [How to shrink `conda` docker builds](https://uwekorn.com/2021/03/01/deploying-conda-environments-in-docker-how-to-do-it-right.html)
 
 ## Flask notes
 
@@ -94,15 +94,15 @@ Useful links:
    `0.0.0.0`, and then it serves it to every open port. It's output is as
    follows:
 
-   ```
-    * Running on all addresses (0.0.0.0)
-    * Running on http://127.0.0.1:5001
-    * Running on http://172.17.0.2:5001
-   ```
+    ```
+     * Running on all addresses (0.0.0.0)
+     * Running on http://127.0.0.1:5001
+     * Running on http://172.17.0.2:5001
+    ```
 
-   This is ok (not sure if it is the best). Then, you can use Docker as before
-   to publish/pass through the correct ports:
-   `docker run --platform linux/amd64 --rm --publish 5001:5001 python-docker`
+    This is ok (not sure if it is the best). Then, you can use Docker as before
+    to publish/pass through the correct ports:
+    `docker run --platform linux/amd64 --rm --publish 5001:5001 python-docker`
 
 I am not sure yet if I need to
 [deal with proxy headers](https://flask.palletsprojects.com/en/2.2.x/deploying/proxy_fix/)
@@ -135,12 +135,12 @@ the default. This _seemed_ to work.
 
 Useful links:
 
-- [`proxy_pass` info](https://dev.to/danielkun/nginx-everything-about-proxypass-2ona)
-- [Difference between `0.0.0.0`, `127.0.0.1` and `localhost`](https://stackoverflow.com/questions/20778771/what-is-the-difference-between-0-0-0-0-127-0-0-1-and-localhost)
-- [Reverse proxy docs](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
-- [Configuring nginx for a Flask application](https://www.patricksoftwareblog.com/how-to-configure-nginx-for-a-flask-web-application/)
-- [How to use the official nginx image](https://www.docker.com/blog/how-to-use-the-official-nginx-docker-image/)
-- [How to use nginx with Flask](https://linuxhint.com/use-nginx-with-flask/)
+-   [`proxy_pass` info](https://dev.to/danielkun/nginx-everything-about-proxypass-2ona)
+-   [Difference between `0.0.0.0`, `127.0.0.1` and `localhost`](https://stackoverflow.com/questions/20778771/what-is-the-difference-between-0-0-0-0-127-0-0-1-and-localhost)
+-   [Reverse proxy docs](https://docs.nginx.com/nginx/admin-guide/web-server/reverse-proxy/)
+-   [Configuring nginx for a Flask application](https://www.patricksoftwareblog.com/how-to-configure-nginx-for-a-flask-web-application/)
+-   [How to use the official nginx image](https://www.docker.com/blog/how-to-use-the-official-nginx-docker-image/)
+-   [How to use nginx with Flask](https://linuxhint.com/use-nginx-with-flask/)
 
 ## Cloud notes
 
@@ -150,6 +150,6 @@ I've chosen the Oracle free tier for hosting. To get the virtual private server
 
 Other useful links:
 
-- [Ubuntu+Docker on Oracle Cloud](https://medium.com/oracledevs/run-always-free-docker-container-on-oracle-cloud-infrastructure-c88e36b65610)
-- [Install Docker on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
-- [Fix Docker permissions](https://www.digitalocean.com/community/questions/how-to-fix-docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket)
+-   [Ubuntu+Docker on Oracle Cloud](https://medium.com/oracledevs/run-always-free-docker-container-on-oracle-cloud-infrastructure-c88e36b65610)
+-   [Install Docker on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
+-   [Fix Docker permissions](https://www.digitalocean.com/community/questions/how-to-fix-docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket)

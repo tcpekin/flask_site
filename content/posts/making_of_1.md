@@ -27,7 +27,7 @@ Python based framework for the web. It is described as "lighter" than the other
 main Python framework, Django, and therefore I hoped it would be simpler. It has
 the ability to turn Markdown files into blog pages, but also run Python code in
 the backend, which was a requirement for what I wanted the site to be able to
-do. With the main framework decided, I started pieceing together different blog
+do. With the main framework decided, I started piecing together different blog
 posts and tutorials, in order to begin to make my site.
 
 My goals were initially simple, and fairly naive. I wanted to have a home page,
@@ -77,7 +77,7 @@ that the other tools can provide, not to mention you need to find the correct
 input file that accurately represents your crystal system.
 
 The goal was therefore to make this much simpler, and bring back what TEMMaps
-had provided, with some enhancenments. It would utilize
+had provided, with some enhancements. It would utilize
 [py4DSTEM](https://github.com/py4dstem/py4DSTEM) to download any material that
 is in the [Materials Project Database](https://materialsproject.org/materials)
 and simulate a diffraction pattern from a defined orientation. The results, both
