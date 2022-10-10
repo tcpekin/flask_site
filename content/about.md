@@ -16,11 +16,11 @@ properties.
 
 My current research interests primarily focus on developing electron
 ptychography as an established and reliable method, which includes improving the
-reproducibility and ease of data acquistion, preprocessing, reconstruction, and
+reproducibility and ease of data acquisition, preprocessing, reconstruction, and
 analysis. Currently, that involves acquiring the data on a Nion UltraSTEM,
 streamlining the preprocessing in Python, and then reconstructing the object
 potential using [Adorym](https://github.com/mdw771/adorym). As long term goals,
-I hope to increase the speed of both acquistion and reconstruction, increase the
+I hope to increase the speed of both acquisition and reconstruction, increase the
 robustness of the reconstruction of thick samples, and extend the technique to
 reliably reconstruct amorphous and/or beam sensitive samples.
 
@@ -29,11 +29,7 @@ German.
 
 <a target="_blank" href="static/assets/Tom_Pekin_Short_Resume.pdf">
 resume
-<img
-className={utilStyles.imginline}
-alt="CV as pdf"
-src="static/assets/icons16/pdf-icon.png"
-/>
+<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
 </a>
 
 [google scholar](https://scholar.google.com/citations?hl=en&user=VaslQdMAAAAJ&view_op=list_works&sortby=pubdate)

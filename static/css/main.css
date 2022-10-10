@@ -10,8 +10,8 @@ body {
   max-width: 100vw;
 }
 
-p, ul {
-  width: 40em;
+p, ul, h1, h2, h3, h4, h5, h6, pre, div.codehilite, table {
+  width: 40rem;
   max-width: 100%;
 }
 

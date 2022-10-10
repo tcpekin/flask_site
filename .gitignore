@@ -1,2 +1,8 @@
 __pycache__/
-assets/
+assets/*
+!assets/img/*
+.prettierrc
+.vscode/*
+profile.png
+Tom_Pekin_CV.pdf
+UC_Berkeley_Thesis_compressed.pdf

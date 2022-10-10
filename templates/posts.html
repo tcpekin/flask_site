@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 {% extends "layout.html" %} {% block body %}
 
-<div style="margin-top: 8px">
+<table style="margin-top: 8px;">
   {% for post in posts %}
-  <p><small>{{ post.date }}</small>
-  &nbsp;
-  <a
-    style="display: inline-block"
-    href="{{ url_for('post', name=post.path.replace('posts/', '')) }}"
-  >
-    <strong>{{ post.title }}</strong>
-  </a>
-  &nbsp; {{ post.description }}</p> {% endfor %}
-</div>
+  <tr>
+    <td style="white-space:nowrap;vertical-align: top;padding-right: 1rem;"><small>{{ post.date }}</small></td>
+    <td>
+      <a
+        style="display: inline-block"
+        href="{{ url_for('post', name=post.path.replace('posts/', '')) }}"
+      >
+        <strong>{{ post.title }}</strong>
+      </a>
+      - {{ post.description }}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+
 {% endblock %}

@@ -1,6 +1,6 @@
 ---
 title: The making of this blog, part 3 - Local → remote
-date: 2022-10-09
+date: 2022-10-10
 description: Sometimes the Flask development server just isn't enough
 tags: [python, web, making_of, flask, gunicorn, docker, nginx, cloud]
 ---
