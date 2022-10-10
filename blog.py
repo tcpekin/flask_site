@@ -1,5 +1,17 @@
+from encodings import utf_8
 import io
 import sys
+import logging
+
+# logging.basicConfig(filename='ip_log.log', encoding='utf_8', level=logging.INFO, format='%(asctime)s %(message)s')
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+fh = logging.FileHandler("./logs/ip_log.log", mode="a")
+formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+fh.setFormatter(formatter)
+logger.addHandler(fh)
+
+logger.info("Log is working.")
 
 import matplotlib.pyplot as plt
 from flask import Flask, Response, render_template, render_template_string, request
@@ -7,6 +19,7 @@ from flask.helpers import redirect, url_for
 from flask_flatpages import FlatPages, pygments_style_defs
 from flask_flatpages.utils import pygmented_markdown
 from werkzeug.middleware.proxy_fix import ProxyFix
+
 # from flask_frozen import Freezer
 
 # from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
@@ -35,7 +48,9 @@ flatpages = FlatPages(app)
 app.config["FLATPAGES_HTML_RENDERER"] = my_renderer
 # freezer = Freezer(app)
 app.config.from_object(__name__)
+# should double check the following line to make sure that the correct number of proxies are set
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=0)
+
 
 @app.route("/pygments.css")
 def pygments_css():
@@ -44,22 +59,22 @@ def pygments_css():
 
 @app.route("/")
 def index():
-    print(request.headers)
-    print(request.remote_addr)
-    print(request.access_route)
+    logger.info(f"{request.remote_addr} - {request.full_path} - {request.referrer}")
     return render_template("index.html")
 
 
 @app.route("/about")
 def about():
+    logger.info(f"{request.remote_addr} - {request.full_path} - {request.referrer}")    
     content = flatpages.get_or_404("about")
-    print("Hello world!")
+    print("Hello visitor!")
     return render_template("about.html", content=content)
 
 
 # @app.route("/dp_sim/<structure>")
 @app.route("/dp_sim/")
 def dp_sim(structure=None, zone_axis=None):
+    logger.info(f"{request.remote_addr} - {request.full_path} - {request.referrer}")
     print(zone_axis)
     if request.args.get("structure") is not None and structure is None:
         try:
@@ -113,6 +128,7 @@ def plot_dp_png(structure=None, h=None, k=None, l=None):
 
 @app.route("/posts/")
 def posts():
+    logger.info(f"{request.remote_addr} - {request.full_path} - {request.referrer}")
     posts = [p for p in flatpages if p.path.startswith(POST_DIR)]
     # print(posts)
     posts.sort(key=lambda item: item["date"], reverse=True)
@@ -121,6 +137,7 @@ def posts():
 
 @app.route("/posts/<name>/")
 def post(name):
+    logger.info(f"{request.remote_addr} - {request.full_path} - {request.referrer}")
     path = "{}/{}".format(POST_DIR, name)
     post = flatpages.get_or_404(path)
     return render_template("post.html", post=post)
@@ -128,6 +145,7 @@ def post(name):
 
 @app.route("/tag/<string:tag>/")
 def tag(tag):
+    logger.info(f"{request.remote_addr} - {request.full_path} - {request.referrer}")
     tagged = [p for p in flatpages if tag in p.meta.get("tags", [])]
     return render_template("tags.html", pages=tagged, tag=tag)
 

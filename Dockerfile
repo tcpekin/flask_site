@@ -13,5 +13,6 @@ FROM gcr.io/distroless/base-debian10
 COPY --from=conda /opt/env /opt/env
 
 COPY . .
+RUN mkdir logs
 
 CMD [ "/opt/env/bin/gunicorn", "-w", "2", "--bind", "0.0.0.0:5001", "blog:app" ]

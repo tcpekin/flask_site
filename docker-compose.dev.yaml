@@ -7,6 +7,10 @@ services:
     env_file:
       - ./.flaskenv
     init: true
+    volumes:
+      - type: bind
+        source: ./logs/
+        target: /logs
   nginx:
     build: ./services/nginx
     platform: linux/arm64/v8
