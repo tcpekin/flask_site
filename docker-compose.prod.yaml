@@ -1,23 +1,21 @@
 services:
-    web:
-      build: .
-      platform: linux/amd64
-      expose:
-        - 5001
-      env_file:
-        - ./.flaskenv
-      init: true
+  web:
+    build: .
+    platform: linux/amd64
+    expose:
+      - 5001
+    env_file:
+      - ./.flaskenv
+    init: true
     volumes:
       - type: bind
         source: ./logs/
         target: /logs
-
-    nginx:
-      build: ./services/nginx
-      platform: linux/amd64
-      ports:
-        - 80:80
-      init: true
-      depends_on:
-        - web
-  
+  nginx:
+    build: ./services/nginx
+    platform: linux/amd64
+    ports:
+      - 80:80
+    init: true
+    depends_on:
+      - web
