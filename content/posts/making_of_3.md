@@ -191,6 +191,9 @@ a synchronization between my local code state and the remote server. For this,
 `docker compose -f docker-compose.prod.yaml up --build` and go to the server's
 IP address and the site was up and working. Success!
 
+The whole source code as of 10.10.2022 can be seen
+[here](https://github.com/tcpekin/flask_site/tree/63941282e273768a5dd537863f5cf0e221d203a5).
+
 There are still some things that have room for improvement. In no particular
 order they are:
 

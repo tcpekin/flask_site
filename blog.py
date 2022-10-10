@@ -6,7 +6,7 @@ from flask import Flask, Response, render_template, render_template_string, requ
 from flask.helpers import redirect, url_for
 from flask_flatpages import FlatPages, pygments_style_defs
 from flask_flatpages.utils import pygmented_markdown
-
+from werkzeug.middleware.proxy_fix import ProxyFix
 # from flask_frozen import Freezer
 
 # from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
@@ -26,17 +26,16 @@ POST_DIR = "posts"
 
 def my_renderer(text):
     prerendered_body = render_template_string(text)
-    print(prerendered_body)
     return pygmented_markdown(prerendered_body, flatpages=flatpages)
 
 
 app = Flask(__name__)
 flatpages = FlatPages(app)
-# the following line must come after defining flatpages!
+# the following line must come after defining flatpages otherwise code blocks do not render properly!
 app.config["FLATPAGES_HTML_RENDERER"] = my_renderer
 # freezer = Freezer(app)
 app.config.from_object(__name__)
-
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=0)
 
 @app.route("/pygments.css")
 def pygments_css():
@@ -45,6 +44,9 @@ def pygments_css():
 
 @app.route("/")
 def index():
+    print(request.headers)
+    print(request.remote_addr)
+    print(request.access_route)
     return render_template("index.html")
 
 
@@ -52,7 +54,6 @@ def index():
 def about():
     content = flatpages.get_or_404("about")
     print("Hello world!")
-    # content='1'
     return render_template("about.html", content=content)
 
 
