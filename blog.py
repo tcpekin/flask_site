@@ -1,9 +1,9 @@
 from encodings import utf_8
 import io
 import sys
+import os
 import logging
 
-# logging.basicConfig(filename='ip_log.log', encoding='utf_8', level=logging.INFO, format='%(asctime)s %(message)s')
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 fh = logging.FileHandler("./logs/ip_log.log", mode="a")
@@ -19,6 +19,7 @@ from flask.helpers import redirect, url_for
 from flask_flatpages import FlatPages, pygments_style_defs
 from flask_flatpages.utils import pygmented_markdown
 from werkzeug.middleware.proxy_fix import ProxyFix
+from flask_debugtoolbar import DebugToolbarExtension
 
 # from flask_frozen import Freezer
 
@@ -29,7 +30,7 @@ from matplotlib.figure import Figure
 from figs import create_dp_figure, create_structure_figure
 
 
-DEBUG = True
+DEBUG = os.environ.get("FLASK_DEBUG", False)
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = ".md"
 FLATPAGES_ROOT = "content"
@@ -51,6 +52,10 @@ app.config.from_object(__name__)
 # should double check the following line to make sure that the correct number of proxies are set
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=0)
 
+# these can be uncommented in development to see what is going on in your app more easily
+# app.config['SECRET_KEY'] = 'ASDF'
+# toolbar = DebugToolbarExtension(app)
+
 
 @app.route("/pygments.css")
 def pygments_css():
@@ -65,7 +70,7 @@ def index():
 
 @app.route("/about")
 def about():
-    logger.info(f"{request.remote_addr} - {request.full_path} - {request.referrer}")    
+    logger.info(f"{request.remote_addr} - {request.full_path} - {request.referrer}")
     content = flatpages.get_or_404("about")
     print("Hello visitor!")
     return render_template("about.html", content=content)

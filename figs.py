@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib
 import warnings
+import os
 
 matplotlib.use("svg")
 import py4DSTEM
@@ -8,7 +9,7 @@ import py4DSTEM
 # from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 
-MP_API_KEY = "gSuVxl9wuF65iSH0DFGBkPNqzlqj60eD"
+MP_API_KEY = os.environ.get('MP_API_KEY')
 
 # surpress plt.show warnings because using non-interactive backend - can change py4DSTEM to not automatically plt.show things too?
 warnings.filterwarnings("ignore", category=UserWarning)
