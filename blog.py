@@ -1,4 +1,3 @@
-from encodings import utf_8
 import io
 import sys
 import os
@@ -26,6 +25,10 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from matplotlib.backends.backend_svg import FigureCanvasSVG as FigureCanvas
 from matplotlib.figure import Figure
 
+# load our environment variables - only necessary for when we want to run 
+# gunicorn by itself, otherwise we can specify the .env file in the Docker 
+# compose file and it takes care of it for us. When we use `flask run`, it also 
+# automatically loads environment variables from both .env and .flaskenv
 from dotenv import load_dotenv
 load_dotenv()
 
