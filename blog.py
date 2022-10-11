@@ -19,7 +19,6 @@ from flask.helpers import redirect, url_for
 from flask_flatpages import FlatPages, pygments_style_defs
 from flask_flatpages.utils import pygmented_markdown
 from werkzeug.middleware.proxy_fix import ProxyFix
-from flask_debugtoolbar import DebugToolbarExtension
 
 # from flask_frozen import Freezer
 
@@ -30,7 +29,7 @@ from matplotlib.figure import Figure
 from figs import create_dp_figure, create_structure_figure
 
 
-DEBUG = os.environ.get("FLASK_DEBUG", False)
+DEBUG = bool(os.environ.get("FLASK_DEBUG", False))
 FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = ".md"
 FLATPAGES_ROOT = "content"
@@ -53,8 +52,10 @@ app.config.from_object(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=0)
 
 # these can be uncommented in development to see what is going on in your app more easily
-# app.config['SECRET_KEY'] = 'ASDF'
-# toolbar = DebugToolbarExtension(app)
+if DEBUG is True:
+    from flask_debugtoolbar import DebugToolbarExtension
+    app.config['SECRET_KEY'] = 'ASDF'
+    toolbar = DebugToolbarExtension(app)
 
 
 @app.route("/pygments.css")
