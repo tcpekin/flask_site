@@ -172,7 +172,7 @@ main change was opening up port 80.
 
 <figure>
 <a href="{{ url_for('static', filename='/assets/img/making_of_3/ingress_rules.png') }}">
-<img src="{{ url_for('static', filename='/assets/img/making_of_3/ingress_rules.png') }}" alt="VNIC Ingress Rules" width="500px"/>
+<img src="{{ url_for('static', filename='/assets/img/making_of_3/ingress_rules.png') }}" alt="VNIC Ingress Rules" class="pure-img"/>
 </a>
 <figcaption> <b>Fig. 1</b> The final ingress rules that worked.</figcaption>
 </figure>
@@ -198,7 +198,8 @@ There are still some things that have room for improvement. In no particular
 order they are:
 
 -   Configure `nginx` to serve static files instead of Flask.
--   Log IP addresses of visitors to see where they are coming from.
+-   Log IP addresses of visitors to see where they are coming from/security
+    reasons.
 -   Add HTTPS support
 -   Figure out how to automate the container building on the server side - how
     can I `git push` content from my local machine and then have it

@@ -37,9 +37,9 @@ diffraction patterns.
 
 <figure>
 <a href="{{ url_for('static', filename='assets/img/making_of_1/zone_axis_image.png') }}">
-<img src="{{ url_for('static', filename='assets/img/making_of_1/zone_axis_image.png') }}" alt="diffraction patterns" width="400px"/>
+<img src="{{ url_for('static', filename='assets/img/making_of_1/zone_axis_image.png') }}" alt="diffraction patterns" class="pure-img med"/>
 </a>
-<figcaption> <b>Fig. 1</b> An experimental zone axis diffraction pattern used to determine orientation. </figcaption>
+<figcaption class="med"> <b>Fig. 1</b> An experimental zone axis diffraction pattern used to determine orientation. </figcaption>
 </figure>
 
 The simulation of diffraction patterns was key - there used to be a website
@@ -60,7 +60,7 @@ right zone axis.
 
 <figure>
 <a href="{{ url_for('static', filename='/assets/img/making_of_1/zone_axis_book.jpeg') }}">
-<img src="{{ url_for('static', filename='/assets/img/making_of_1/zone_axis_book.jpeg') }}" alt="book of diffraction patterns" width="500px"/>
+<img src="{{ url_for('static', filename='/assets/img/making_of_1/zone_axis_book.jpeg') }}" alt="book of diffraction patterns" class="pure-img"/>
 </a>
 <figcaption> <b>Fig. 2</b> A picture from the best resource for diffraction pattern matching: <em>Practical Electron Microscopy in Materials Science</em>, by J. W. Edington. (Right-click and open in new tab/window to enlarge.) </figcaption>
 </figure>

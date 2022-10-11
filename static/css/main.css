@@ -10,13 +10,26 @@ body {
   max-width: 100vw;
 }
 
-p, ul, h1, h2, h3, h4, h5, h6, pre, div.codehilite, table {
+p,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+div.codehilite,
+table,
+img,
+figure,
+.dp-grid {
   width: 40rem;
   max-width: 100%;
 }
 
-img {
-  max-width: 100%;
+img.dp-img {
+  height: 100%;
 }
 
 code {
@@ -61,30 +74,6 @@ li a.navbar-test:hover {
   background-color: rgb(255, 146, 146);
 }
 
-/* Three image containers (use 25% for four, and 50% for two, etc) */
-.img_col_l {
-  flex: 2.5;
-  overflow: auto;
-}
-
-.img_col_r {
-  flex: 1;
-  overflow: auto;
-}
-
-.img_row {
-  display: flex;
-  width: 45em;
-  max-width: 100%;
-  /* align-items: flex-start; */
-}
-
-/* Clear floats after image containers */
-/* .img_row::after {
-  content: "";
-  clear: both;
-  display: table;
-} */
 
 html {
   /* max-width: 70ch; */
@@ -104,11 +93,28 @@ body :not(:is(h1, h2, h3, h4, h5, h6)) {
 }
 
 figure {
-  display: table;
+  display: inline-block;
+  margin-inline: 0 0;
 }
+
+figure img {
+  width: 35rem;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
 figcaption {
-  display: table-caption;
   caption-side: bottom;
+  width: 35rem;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.med {
+  width: 75%;
 }
 
 pre {
