@@ -26,6 +26,9 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from matplotlib.backends.backend_svg import FigureCanvasSVG as FigureCanvas
 from matplotlib.figure import Figure
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from figs import create_dp_figure, create_structure_figure
 
 
@@ -159,8 +162,4 @@ def tag(tag):
 if __name__ == "__main__":
     # this only runs if we run python blog.py from the CLI, not flask --app run blog, as then __name__ is 'blog'
     # Both ways are supported but I think the latter is better. Debug stuff goes  then in CLI arguments or env variables.
-    if len(sys.argv) > 1 and sys.argv[1] == "build":
-        # freezer.freeze()
-        pass
-    else:
-        app.run(host="0.0.0.0", debug=True)
+    pass
