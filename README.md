@@ -179,3 +179,12 @@ Other useful links:
 -   [Ubuntu+Docker on Oracle Cloud](https://medium.com/oracledevs/run-always-free-docker-container-on-oracle-cloud-infrastructure-c88e36b65610)
 -   [Install Docker on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 -   [Fix Docker permissions](https://www.digitalocean.com/community/questions/how-to-fix-docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket)
+
+
+## TODO
+- [ ] Logging/analytics
+- [ ] HTTPS - via docker?
+- [ ] `nginx` static files update
+- [ ] Simulation **g** vectors
+- [ ] Simulation table of most common zone axes
+- [ ] CSS Update
