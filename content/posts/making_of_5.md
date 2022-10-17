@@ -5,7 +5,7 @@ description: Setting up tcpekin.com
 tags: [python, web, making_of, flask, domain]
 ---
 
-[Part 3]({{ url_for('post', name='making_of_4') }})
+[Part 4]({{ url_for('post', name='making_of_4') }})
 
 The next part was paradoxically not so hard. I did a lot of ~~research~~
 googling about to figure out who the best domain registrar was, and the
