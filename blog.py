@@ -2,6 +2,10 @@ import io
 import sys
 import os
 import logging
+import pandas as pd
+import json
+import plotly
+import plotly.express as px
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -25,11 +29,12 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from matplotlib.backends.backend_svg import FigureCanvasSVG as FigureCanvas
 from matplotlib.figure import Figure
 
-# load our environment variables - only necessary for when we want to run 
-# gunicorn by itself, otherwise we can specify the .env file in the Docker 
-# compose file and it takes care of it for us. When we use `flask run`, it also 
+# load our environment variables - only necessary for when we want to run
+# gunicorn by itself, otherwise we can specify the .env file in the Docker
+# compose file and it takes care of it for us. When we use `flask run`, it also
 # automatically loads environment variables from both .env and .flaskenv
 from dotenv import load_dotenv
+
 load_dotenv()
 
 from figs import create_dp_figure, create_structure_figure
@@ -60,13 +65,14 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=0)
 # these can be uncommented in development to see what is going on in your app more easily
 if DEBUG is True:
     from flask_debugtoolbar import DebugToolbarExtension
-    app.config['SECRET_KEY'] = 'ASDF'
+
+    app.config["SECRET_KEY"] = "ASDF"
     toolbar = DebugToolbarExtension(app)
 
 
 @app.route("/pygments.css")
 def pygments_css():
-    return pygments_style_defs("tango"), 200, {"Content-Type": "text/css"}
+    return pygments_style_defs("default"), 200, {"Content-Type": "text/css"}
 
 
 @app.route("/")
@@ -83,7 +89,6 @@ def about():
     return render_template("about.html", content=content)
 
 
-# @app.route("/dp_sim/<structure>")
 @app.route("/dp_sim/")
 def dp_sim(structure=None, zone_axis=None):
     logger.info(f"{request.remote_addr} - {request.full_path} - {request.referrer}")
@@ -160,6 +165,21 @@ def tag(tag):
     logger.info(f"{request.remote_addr} - {request.full_path} - {request.referrer}")
     tagged = [p for p in flatpages if tag in p.meta.get("tags", [])]
     return render_template("tags.html", pages=tagged, tag=tag)
+
+
+@app.route("/graph/")
+def graph():
+    df = pd.DataFrame(
+        {
+            "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
+            "Amount": [4, 1, 2, 2, 4, 5],
+            "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"],
+        }
+    )
+    fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
+    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+
+    return Response(graphJSON, mimetype="application/json")
 
 
 if __name__ == "__main__":
