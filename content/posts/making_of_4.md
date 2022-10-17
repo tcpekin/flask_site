@@ -147,9 +147,19 @@ container/be read by a future container. Most of the Docker documentation
 recommends Volumes for their many benefits, but ease of access to the outside
 world is a big plus for a `mount`ed drive.
 
-
 ## Conclusion
 
-No huge takeaways here - this was a more complicated problem than I initially expected, but by breaking it down in to small component parts, I could work my way through it until everything worked (again). This required reconfiguring my reverse proxy, understanding how that worked to access the outside users' IP address within Flask, learning about `logging` and how to set that up (with room for future improvements), and finally configuring Docker to have a persistent storage location. The combination of these things resulted in a somewhat basic IP address logging system.
+No huge takeaways here - this was a more complicated problem than I initially
+expected, but by breaking it down in to small component parts, I could work my
+way through it until everything worked (again). This required reconfiguring my
+reverse proxy, understanding how that worked to access the outside users' IP
+address within Flask, learning about `logging` and how to set that up (with room
+for future improvements), and finally configuring Docker to have a persistent
+storage location. The combination of these things resulted in a somewhat basic
+IP address logging system.
 
-To improve it, as previously mentioned, I want to turn it into a decorator based system, as well as keep more header information (particularly if the requests are from robots or actual people... not sure how to figure that out yet).
+To improve it, as previously mentioned, I want to turn it into a decorator based
+system, as well as keep more header information (particularly if the requests
+are from robots or actual people... not sure how to figure that out yet).
+
+[Part 4]({{ url_for('post', name='making_of_4') }})
