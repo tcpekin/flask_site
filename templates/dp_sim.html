@@ -37,14 +37,14 @@
 
 <div class="pure-g dp-grid">
   <div class="pure-u-4-5">
-  <img class="pure-img dp-img"
-    src="{{'/dp_sim/img/{}_{}_{}_{}_dp_plot.png'.format(structure, h,k,l)}}"
-    alt="Diffraction Pattern" />
+    <img class="pure-img dp-img"
+      src="{{url_for('plot_dp_png', structure=structure, h=h, k=k, l=l)}}"
+      alt="Diffraction Pattern" />
   </div>
   <div class="pure-u-1-5">
-  <img class="pure-img dp-img"
-    src="{{'/dp_sim/img/{}_{}_{}_{}_structure_plot.png'.format(structure, h,k,l)}}"
-    alt="Crystal Structure" />
+    <img class="pure-img dp-img"
+      src="{{url_for('plot_structure_png', structure=structure, h=h, k=k, l=l)}}"
+      alt="Crystal Structure" />
   </div>
 </div>
 {% else %} {% endif %} {% endblock %}
