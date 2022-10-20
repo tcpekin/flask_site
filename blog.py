@@ -168,7 +168,7 @@ def tag(tag):
 
 
 @app.route("/graph/")
-def graph():
+def graph():  # TODO - look into doing plotting in javascript instead
     df = pd.DataFrame(
         {
             "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
