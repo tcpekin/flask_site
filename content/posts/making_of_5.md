@@ -70,3 +70,5 @@ Next up - better analytics, HTTP**S** (so far extremely stupidly hard with
 [Plotly](https://plotly.com/) (which I think might require a redesign of how I
 serve blog pages ☹️). I guess that means I might learn some database skills,
 whether I want to or not.
+
+[Part 6]({{ url_for('post', name='making_of_6') }})

@@ -5,7 +5,7 @@ import logging
 import pandas as pd
 import json
 import plotly
-import plotly.express as px
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -167,16 +167,56 @@ def tag(tag):
     return render_template("tags.html", pages=tagged, tag=tag)
 
 
-@app.route("/graph/")
-def graph():  # TODO - look into doing plotting in javascript instead
-    df = pd.DataFrame(
-        {
-            "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-            "Amount": [4, 1, 2, 2, 4, 5],
-            "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"],
-        }
+@app.route("/covid_graph/")
+def covid_graph():  # TODO - look into doing plotting in javascript instead
+    data = pd.read_csv(
+        "static/assets/data/fallzahlen_und_indikatoren.csv", sep=";", decimal=","
     )
-    fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
+    data["Datum"] = pd.to_datetime(data["Datum"], format="%d.%m.%Y")
+
+    # import graph_objects from plotly package
+    import plotly.graph_objects as go
+
+    # import make_subplots function from plotly.subplots
+    # to make grid of plots
+    from plotly.subplots import make_subplots
+
+    # use specs parameter in make_subplots function
+    # to create secondary y-axis
+    fig = make_subplots(specs=[[{"secondary_y": True}]])
+
+    # plot a scatter chart by specifying the x and y values
+    # Use add_trace function to specify secondary_y axes.
+    fig.add_trace(
+        go.Scatter(
+            x=data["Datum"], y=data["7-Tage-Inzidenz"], name="7 day incidence rate"
+        ),
+        secondary_y=False,
+    )
+
+    # Use add_trace function and specify secondary_y axes = True.
+    fig.add_trace(
+        go.Scatter(
+            x=data["Datum"],
+            y=data["7-Tage-Hosp-Inzidenz"],
+            name="7 day hospital incidence rate",
+        ),
+        secondary_y=True,
+    )
+
+    # Adding title text to the figure
+    fig.update_layout(title_text="Covid in Berlin", hovermode="x")
+
+    # Naming x-axis
+    fig.update_xaxes(title_text="Date")
+
+    # Naming y-axes
+    fig.update_yaxes(title_text="# of cases", secondary_y=False)
+    fig.update_yaxes(title_text="# of hospitalizations ", secondary_y=True)
+    fig.update_layout(
+        legend=dict(orientation="h", yanchor="top", y=1.12, xanchor="left", x=0.01)
+    )
+
     graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
 
     return Response(graphJSON, mimetype="application/json")
