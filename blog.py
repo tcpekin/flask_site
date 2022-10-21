@@ -1,8 +1,11 @@
 import io
 import sys
 import os
+import time
+import requests
 import logging
 import pandas as pd
+import numpy as np
 import json
 import plotly
 
@@ -167,11 +170,48 @@ def tag(tag):
     return render_template("tags.html", pages=tagged, tag=tag)
 
 
+@app.route("/sine_graph/")
+def sine_graph():
+    import plotly.express as px
+
+    x = np.linspace(0, 2 * np.pi, 100)
+    y = np.sin(x) + np.random.normal(scale=0.3, size=100)
+    fig = px.scatter(
+        x=x,
+        y=y,
+    )
+    fig.add_scatter(
+        x=x,
+        y=np.sin(x),
+        mode="lines",
+    )
+    fig.update_layout(showlegend=False)
+    fig["data"][1]["line"]["width"] = 5  # this is magic
+    graphJSON = fig.to_json()
+    return Response(graphJSON, mimetype="application/json")
+
+
 @app.route("/covid_graph/")
 def covid_graph():  # TODO - look into doing plotting in javascript instead
-    data = pd.read_csv(
-        "static/assets/data/fallzahlen_und_indikatoren.csv", sep=";", decimal=","
-    )
+
+    data_path = os.path.join("static/assets/data", "fallzahlen_und_indikatoren.csv")
+    try:
+        file_age = time.time() - os.path.getmtime(data_path)
+    except:
+        file_age = 90000
+
+    if file_age > 86400:
+        print("Downloading data")
+        url = "https://www.berlin.de/lageso/_assets/gesundheit/publikationen/corona/fallzahlen_und_indikatoren.csv"
+        response = requests.get(url)
+        with open(data_path, "wb") as f:
+            f.write(response.content)
+    else:
+        print(
+            f"Data has already been recently downloaded {file_age/86400:.3f} days ago."
+        )
+
+    data = pd.read_csv(data_path, sep=";", decimal=",")
     data["Datum"] = pd.to_datetime(data["Datum"], format="%d.%m.%Y")
 
     # import graph_objects from plotly package
@@ -204,7 +244,7 @@ def covid_graph():  # TODO - look into doing plotting in javascript instead
         secondary_y=True,
     )
 
-    # Adding title text to the figure
+    # Adding title text to the figure and make over compare both lines
     fig.update_layout(title_text="Covid in Berlin", hovermode="x")
 
     # Naming x-axis
@@ -217,8 +257,8 @@ def covid_graph():  # TODO - look into doing plotting in javascript instead
         legend=dict(orientation="h", yanchor="top", y=1.12, xanchor="left", x=0.01)
     )
 
-    graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
-
+    # graphJSON = json.dumps(fig, cls=plotly.utils.PlotlyJSONEncoder)
+    graphJSON = fig.to_json()
     return Response(graphJSON, mimetype="application/json")
 
 
