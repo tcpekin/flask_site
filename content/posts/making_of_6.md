@@ -71,7 +71,7 @@ dashboard with Bokeh...
 ## Integrating Plotly into my site's architecture
 
 Once again - this site's
-[source code](https://github.com/tcpekin/flask_site/blob/master/blog.py).
+[source code](https://github.com/tcpekin/flask_site/tree/19bc882115424265e115c0358637774b21fa57b0).
 
 At first I just kind of followed the tutorial linked in the previous section.
 However, that tutorial is focused on making a chart on a specific page, or
@@ -188,6 +188,8 @@ me.) After not understanding the
 at all, I kind of hacked something together. In my understanding, the
 function/callback `.done` runs upon a successful completion of getting the JSON,
 and so I put my plotting code there. If the JSON isn't retrieved, it won't plot.
+
+*Edit - I have added more explanation to what jQuery is doing/how it works in the [next post]({{ url_for('post', name='making_of_6_quick_note') }}).*
 
 The `.done` function somehow has an input `data` from the `getJSON` function -
 this I don't understand at all. But I can create a variable `layout` for Plotly,
@@ -359,7 +361,7 @@ Some notes - you can click on the legend to remove one (or both) of the lines.
 You can also click and drag in the plot area to zoom into a subregion, and
 double click to reset zoom.
 
-[Source code](https://github.com/tcpekin/flask_site/blob/master/blog.py).
+[Source code](https://github.com/tcpekin/flask_site/tree/19bc882115424265e115c0358637774b21fa57b0)
 
 ## Conclusions and future areas for improvement and exploration
 
@@ -391,3 +393,5 @@ particular order:
    this will be explored more in a another post.
 5. [Berlin Covid data source](https://www.berlin.de/lageso/gesundheit/infektionskrankheiten/corona/tabelle-indikatoren-gesamtuebersicht/)
 6. [p5.js - another visualization library I want to try out... but javascript 😭](https://p5js.org/)
+
+[Part 6.1]({{ url_for('post', name='making_of_6_quick_note') }})
