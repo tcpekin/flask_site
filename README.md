@@ -75,7 +75,9 @@ up and running - to build and run I simply call
 in the config file. Some details are shown
 [here](https://www.python4networkengineers.com/posts/python-intermediate/how_to_run_an_app_with_docker/).
 
-With regards to logging - this required me to set up a mount point, so that data could persist after shutting down the container. This is relatively simple in the `compose.yaml` file, I simply added the following lines:
+With regards to logging - this required me to set up a mount point, so that data
+could persist after shutting down the container. This is relatively simple in
+the `compose.yaml` file, I simply added the following lines:
 
 ```yaml
   web:
@@ -86,11 +88,25 @@ With regards to logging - this required me to set up a mount point, so that data
         target: /logs
 ```
 
-The type is `bind`, which means it is a mount, not a Docker Volume, which is more for like SQL databases that persist between containers. The mount is better for data you want to extract outside of the container at the end of the day, perfect for a log. 
+The type is `bind`, which means it is a mount, not a Docker Volume, which is
+more for like SQL databases that persist between containers. The mount is better
+for data you want to extract outside of the container at the end of the day,
+perfect for a log.
 
-The source is the location on the actual hardware - I had to create a `logs` folder, one way to keep it around in git is to include a `.gitignore` file within the folder itself. See [here](https://stackoverflow.com/questions/115983/how-do-i-add-an-empty-directory-to-a-git-repository) for details. Finally, the `target` is just the folder (absolute location) in the container itself. So since everything is pretty much always in the root directory, it is there. 
+The source is the location on the actual hardware - I had to create a `logs`
+folder, one way to keep it around in git is to include a `.gitignore` file
+within the folder itself. See
+[here](https://stackoverflow.com/questions/115983/how-do-i-add-an-empty-directory-to-a-git-repository)
+for details. Finally, the `target` is just the folder (absolute location) in the
+container itself. So since everything is pretty much always in the root
+directory, it is there.
 
-With regards to environment variables - in order to protect my secret API key(s), I put them into a `.env` file and then just `scp`'d that file to my remote server (`scp -i ~/Downloads/ssh-key.key ./.env ubuntu@###.##.##.###:/home/ubuntu/flask_site/`). You can load this file as environment variables in the Docker `compose` file! This again just required adding
+With regards to environment variables - in order to protect my secret API
+key(s), I put them into a `.env` file and then just `scp`'d that file to my
+remote server
+(`scp -i ~/Downloads/ssh-key.key ./.env ubuntu@###.##.##.###:/home/ubuntu/flask_site/`).
+You can load this file as environment variables in the Docker `compose` file!
+This again just required adding
 
 ```yaml
   web:
@@ -133,6 +149,8 @@ Useful links:
 I am not sure yet if I need to
 [deal with proxy headers](https://flask.palletsprojects.com/en/2.2.x/deploying/proxy_fix/)
 on the Flask side of things.
+
+[How to use blueprints to modularize a Flask app](https://stackoverflow.com/questions/15231359/split-python-flask-app-into-multiple-files)
 
 ## Gunicorn notes
 
@@ -180,11 +198,12 @@ Other useful links:
 -   [Install Docker on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 -   [Fix Docker permissions](https://www.digitalocean.com/community/questions/how-to-fix-docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket)
 
-
 ## TODO
-- [ ] Logging/analytics
-- [ ] HTTPS - via docker?
-- [ ] `nginx` static files update
-- [ ] Simulation **g** vectors
-- [ ] Simulation table of most common zone axes
-- [ ] CSS Update
+
+-   [ ] Logging/analytics
+-   [ ] HTTPS - via docker?
+-   [ ] `nginx` static files update
+-   [ ] Simulation **g** vectors
+-   [ ] Simulation table of most common zone axes
+-   [ ] CSS Update
+-   [ ] Modularize `blog.py`
