@@ -28,3 +28,5 @@ services:
     volumes:
       - ./services/certbot/conf:/etc/letsencrypt
       - ./services/certbot/www:/var/www/certbot
+    depends_on:
+      - nginx
