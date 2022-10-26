@@ -200,8 +200,8 @@ Other useful links:
 
 ## TODO
 
+-   [x] HTTPS - via docker?
 -   [ ] Logging/analytics
--   [ ] HTTPS - via docker?
 -   [ ] `nginx` static files update
 -   [ ] Simulation **g** vectors
 -   [ ] Simulation table of most common zone axes

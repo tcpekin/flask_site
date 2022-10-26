@@ -11,13 +11,13 @@
   <h1>{{ post.title }}</h1> 
   <h3>{{ post.description }}</h3>
 
-  {{ post.html|safe }}
-
   <small> {{ post.date }} <br />
     {% for post_tag in post.meta.tags %}
-      <a href="{{ url_for("tag", tag=post_tag) }}">{{ post_tag }}</a>
+    <a href="{{ url_for("tag", tag=post_tag) }}">{{ post_tag }}</a>
     {% endfor %}
-  </small
-  >
+  </small>
+  
+  {{ post.html|safe }}
+
 </div>
 {% endblock %}
