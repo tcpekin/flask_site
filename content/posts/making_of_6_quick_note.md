@@ -167,6 +167,8 @@ the JSON response is correctly getting passed to whatever variable you declare!
 Mystery solved. I'm not entirely looking forward to a lot more jQuery/Javascript
 in my future, but slowly things fit a little bit better together.
 
+[Part 7]({{ url_for('post', name='making_of_7') }})
+
 ## Links
 
 1. [jQuery.getJSON documentation](https://api.jquery.com/jquery.getjson)

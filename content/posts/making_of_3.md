@@ -180,8 +180,8 @@ main change was opening up port 80.
 Through the course of this, I opened many different ports to figure out how it
 all worked with `nginx`, but in the end, nothing complicated was necessary. This
 is a perk of `nginx` - it deals with port 80, and then sends it internally to
-different locations, so that a bunch of different ports don't need to be open to
-the outside world.
+different locations, so that a bunch of different ports/routes don't need to be
+open to the outside world.
 
 ## Final set up and future ideas
 

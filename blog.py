@@ -48,6 +48,11 @@ FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = ".md"
 FLATPAGES_ROOT = "content"
 FLATPAGES_MARKDOWN_EXTENSIONS = ["codehilite", "fenced_code"]
+FLATPAGES_EXTENSION_CONFIGS = {
+    'codehilite': {
+        'linenums': 'True'
+    }
+}
 POST_DIR = "posts"
 
 
