@@ -1,6 +1,6 @@
 ---
 title: The making of this blog, part 8 - Analytics v2
-date: 2022-11-2
+date: 2022-11-02
 description: Analytics is better than a text file
 tags:
     [
@@ -367,4 +367,4 @@ one step closer to being fully functional!
 1. [Shynet GitHub](https://github.com/milesmcc/shynet)
 2. [How long does it take for a changes to DNS to show up](https://kb.porkbun.com/article/33-how-long-will-it-take-for-changes-to-dns-to-show-up)
 3. [How to create a subdomain](https://kb.porkbun.com/article/200-how-to-create-a-subdomain)
-4. [What is my DNS resolving to... worldwide?](https://www.whatsmydns.net/#A/admin.tcpekin.com)s
+4. [What is my DNS resolving to... worldwide?](https://www.whatsmydns.net/#A/admin.tcpekin.com)
