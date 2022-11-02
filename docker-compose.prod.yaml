@@ -37,20 +37,20 @@ services:
     image: milesmcc/shynet:edge
     restart: unless-stopped
     expose:
-      - 5010
+      - 80
     env_file:
       # Create a file called '.env' if it doesn't already exist.
       # You can use `TEMPLATE.env` as a guide.
       - .env
     volumes:
       - ./services/shynet_db/:/var/local/shynet/db:rw
-  webserver:
-    container_name: shynet_webserver
-    image: nginx
-    restart: always
-    volumes:
-      - ./services/shynet/nginx.conf:/etc/nginx/conf.d/default.conf    
-    ports:
-      - 5010:80
-    depends_on:
-      - shynet
+  # webserver:
+  #   container_name: shynet_webserver
+  #   image: nginx
+  #   restart: always
+  #   volumes:
+  #     - ./services/shynet/nginx.conf:/etc/nginx/conf.d/default.conf    
+  #   ports:
+  #     - 5010:80
+  #   depends_on:
+  #     - shynet
