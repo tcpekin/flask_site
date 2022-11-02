@@ -198,6 +198,14 @@ Other useful links:
 -   [Install Docker on Ubuntu](https://docs.docker.com/engine/install/ubuntu/)
 -   [Fix Docker permissions](https://www.digitalocean.com/community/questions/how-to-fix-docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket)
 
+## Analytics notes
+Currently using [Shynet](https://github.com/milesmcc/shynet). 
+
+Current configuration notes
+- Run on the same instance as blog - maybe not a great idea
+- Means we only need one `nginx` instance. 
+- `certbot`'s `init-letsencrypt.sh` file takes a list of domains defined within. Wildcard domains do not work, so you have to define each individually. 
+
 ## TODO
 
 -   [x] HTTPS - via docker?

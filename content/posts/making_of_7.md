@@ -456,3 +456,6 @@ had to let them scroll. And that's the state of the project 🗼.
 6. [Getting `nginx` and `localhost` to cooperate](https://stackoverflow.com/questions/11061788/correct-configuration-for-nginx-to-localhost)
 7. [`certbot` documentation](https://eff-certbot.readthedocs.io/en/stable/using.html#webroot)
 8. [Flask HTTPS notes, without Docker](https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https/page/0)
+
+
+[Part 8]({{ url_for('post', name='making_of_8') }})
