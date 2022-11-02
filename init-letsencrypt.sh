@@ -5,7 +5,7 @@ if ! [ -x "$(command -v docker compose -f docker-compose.prod.yaml)" ]; then
   exit 1
 fi
 
-domains=(tcpekin.com www.tcpekin.com)
+domains=(tcpekin.com www.tcpekin.com admin.tcpekin.com)
 rsa_key_size=4096
 data_path="./services/certbot"
 email="tcpekin@gmail.com" # Adding a valid address is strongly recommended
