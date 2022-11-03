@@ -20,7 +20,7 @@ logger.addHandler(fh)
 logger.info("Log is working.")
 
 import matplotlib.pyplot as plt
-from flask import Flask, Response, render_template, render_template_string, request
+from flask import Flask, Response, render_template, render_template_string, request, send_from_directory
 from flask.helpers import redirect, url_for
 from flask_flatpages import FlatPages, pygments_style_defs
 from flask_flatpages.utils import pygmented_markdown
@@ -133,22 +133,36 @@ def dp_sim(structure=None, zone_axis=None):
 
 @app.route("/dp_sim/img/<structure>_<h>_<k>_<l>_structure_plot.png")
 def plot_structure_png(structure=None, h=None, k=None, l=None):
-    zone_axis = [int(h), int(k), int(l)]
-    fig = create_structure_figure(structure=structure, zone_axis=zone_axis)
-    output = io.BytesIO()
-    FigureCanvas(fig).print_svg(output)
-    plt.close(fig)
-    return Response(output.getvalue(), mimetype="image/svg+xml")
+    fname = f'assets/img/dps/{structure}_{h}_{k}_{l}_structure_plot.svg'
+    folder = 'static/'
+    try:
+        os.path.isfile(folder + fname)
+        return send_from_directory(folder, fname, mimetype="image/svg+xml")
+    except:
+        zone_axis = [int(h), int(k), int(l)]
+        fig = create_structure_figure(structure=structure, zone_axis=zone_axis)
+        output = io.BytesIO()
+        fig.savefig(folder + fname)
+        FigureCanvas(fig).print_svg(output)
+        plt.close(fig)
+        return Response(output.getvalue(), mimetype="image/svg+xml")
 
 
 @app.route("/dp_sim/img/<structure>_<h>_<k>_<l>_dp_plot.png")
 def plot_dp_png(structure=None, h=None, k=None, l=None):
-    zone_axis = [int(h), int(k), int(l)]
-    fig = create_dp_figure(structure=structure, zone_axis=zone_axis)
-    output = io.BytesIO()
-    FigureCanvas(fig).print_svg(output)
-    plt.close(fig)
-    return Response(output.getvalue(), mimetype="image/svg+xml")
+    fname = f'assets/img/dps/{structure}_{h}_{k}_{l}_dp_plot.svg'
+    folder = 'static/'
+    try:
+        os.path.isfile(folder + fname)
+        return send_from_directory(folder, fname, mimetype="image/svg+xml")
+    except:
+        zone_axis = [int(h), int(k), int(l)]
+        fig = create_dp_figure(structure=structure, zone_axis=zone_axis)
+        output = io.BytesIO()
+        fig.savefig(folder + fname)
+        FigureCanvas(fig).print_svg(output)
+        plt.close(fig)
+        return Response(output.getvalue(), mimetype="image/svg+xml")
 
 
 @app.route("/posts/")
