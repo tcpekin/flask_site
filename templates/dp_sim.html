@@ -21,7 +21,8 @@
     <option value="mp-22862" label="interpenetrating FCC (NaCl)"></option>
   </datalist>
 
-  <input type="text" name="zone_axis" placeholder="1,1,1 (h,k,l)" />
+  <input type="text" name="zone_axis" placeholder="1,1,1 (h,k,l)" {% if structure
+    is not none %} value="{{'{},{},{}'.format(h,k,l)}}" {% endif %}/>
 
   <button class="pure-button pure-button-primary">Submit</button>
 </form>
@@ -32,7 +33,7 @@
   The structure is
   <a
     href="{{'https://materialsproject.org/materials/{}'.format(structure)}}">{{structure}}</a>
-  and the zone axis is {{h}}{{k}}{{l}}.
+  and the zone axis is <{{h}},{{k}},{{l}}>.
 </p>
 
 <div class="pure-g dp-grid">
@@ -54,7 +55,7 @@
   <a
     href="https://github.com/tcpekin/flask_site/blob/c5f228b42cbfb61fa1b59372f00e37eff9a003d5/figs.py">source
     code</a>
-  for plotting, which uses
+  for plotting, which is built using
   <a href="https://github.com/py4DSTEM/py4DSTEM">py4DSTEM</a>.
 </p>
 

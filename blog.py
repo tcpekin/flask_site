@@ -25,6 +25,7 @@ from flask.helpers import redirect, url_for
 from flask_flatpages import FlatPages, pygments_style_defs
 from flask_flatpages.utils import pygmented_markdown
 from werkzeug.middleware.proxy_fix import ProxyFix
+from xml.etree import ElementTree
 
 # from flask_frozen import Freezer
 
@@ -136,8 +137,13 @@ def plot_structure_png(structure=None, h=None, k=None, l=None):
     fname = f'assets/img/dps/{structure}_{h}_{k}_{l}_structure_plot.svg'
     folder = 'static/'
     try:
-        os.path.isfile(folder + fname)
-        return send_from_directory(folder, fname, mimetype="image/svg+xml")
+        if os.path.isfile(folder + fname):
+            with open(folder + fname) as f:
+                # this parses the SVG XML, and if it has an error, forces a recomputation of the pattern.
+                ElementTree.fromstring(f.read())
+            return send_from_directory(folder, fname, mimetype="image/svg+xml")
+        else:
+            raise FileNotFoundError
     except:
         zone_axis = [int(h), int(k), int(l)]
         fig = create_structure_figure(structure=structure, zone_axis=zone_axis)
@@ -153,8 +159,12 @@ def plot_dp_png(structure=None, h=None, k=None, l=None):
     fname = f'assets/img/dps/{structure}_{h}_{k}_{l}_dp_plot.svg'
     folder = 'static/'
     try:
-        os.path.isfile(folder + fname)
-        return send_from_directory(folder, fname, mimetype="image/svg+xml")
+        if os.path.isfile(folder + fname):
+            with open(folder + fname) as f:
+                ElementTree.fromstring(f.read())
+            return send_from_directory(folder, fname, mimetype="image/svg+xml")
+        else:
+            raise FileNotFoundError
     except:
         zone_axis = [int(h), int(k), int(l)]
         fig = create_dp_figure(structure=structure, zone_axis=zone_axis)

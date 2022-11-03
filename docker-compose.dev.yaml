@@ -7,7 +7,9 @@ services:
     env_file:
       - ./.env
     init: true
-    volumes:
+    volumes:      
+      - ./static/assets/data/structures:/static/assets/data/structures
+      - ./static/assets/img/dps:/static/assets/img/dps
       - type: bind
         source: ./logs/
         target: /logs
