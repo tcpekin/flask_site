@@ -33,15 +33,3 @@ services:
       - ./services/certbot/www:/var/www/certbot
     depends_on:
       - nginx
-  shynet:
-    container_name: shynet_main
-    image: milesmcc/shynet:edge
-    restart: unless-stopped
-    expose:
-      - 80
-    env_file:
-      # Create a file called '.env' if it doesn't already exist.
-      # You can use `TEMPLATE.env` as a guide.
-      - .env
-    volumes:
-      - ./services/shynet_db/:/var/local/shynet/db:rw
