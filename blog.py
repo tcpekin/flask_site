@@ -20,7 +20,14 @@ logger.addHandler(fh)
 logger.info("Log is working.")
 
 import matplotlib.pyplot as plt
-from flask import Flask, Response, render_template, render_template_string, request, send_from_directory
+from flask import (
+    Flask,
+    Response,
+    render_template,
+    render_template_string,
+    request,
+    send_from_directory,
+)
 from flask.helpers import redirect, url_for
 from flask_flatpages import FlatPages, pygments_style_defs
 from flask_flatpages.utils import pygmented_markdown
@@ -41,7 +48,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-from figs import create_dp_figure, create_structure_figure
+from figs import create_dp_figure, create_structure_figure, get_mp_structure
 
 
 DEBUG = bool(os.environ.get("FLASK_DEBUG", False))
@@ -49,11 +56,7 @@ FLATPAGES_AUTO_RELOAD = DEBUG
 FLATPAGES_EXTENSION = ".md"
 FLATPAGES_ROOT = "content"
 FLATPAGES_MARKDOWN_EXTENSIONS = ["codehilite", "fenced_code"]
-FLATPAGES_EXTENSION_CONFIGS = {
-    'codehilite': {
-        'linenums': 'True'
-    }
-}
+FLATPAGES_EXTENSION_CONFIGS = {"codehilite": {"linenums": "True"}}
 POST_DIR = "posts"
 
 
@@ -102,6 +105,7 @@ def about():
 def dp_sim(structure=None, zone_axis=None):
     logger.info(f"{request.remote_addr} - {request.full_path} - {request.referrer}")
     print(zone_axis)
+    message = None
     if request.args.get("structure") is not None and structure is None:
         try:
             structure = request.args.get("structure")
@@ -122,20 +126,31 @@ def dp_sim(structure=None, zone_axis=None):
     else:
         zone_axis = [1, 1, 1]
     if structure is not None:
-        success = True
+        try:
+            get_mp_structure(structure=structure)
+            success = True
+        except Exception as e:
+            message = str(e)
+            success = False
     else:
         success = False
 
     h, k, l = zone_axis
     return render_template(
-        "dp_sim.html", success=success, structure=structure, h=h, k=k, l=l
+        "dp_sim.html",
+        success=success,
+        structure=structure,
+        h=h,
+        k=k,
+        l=l,
+        message=message,
     )
 
 
 @app.route("/dp_sim/img/<structure>_<h>_<k>_<l>_structure_plot.png")
 def plot_structure_png(structure=None, h=None, k=None, l=None):
-    fname = f'assets/img/dps/{structure}_{h}_{k}_{l}_structure_plot.svg'
-    folder = 'static/'
+    fname = f"assets/img/dps/{structure}_{h}_{k}_{l}_structure_plot.svg"
+    folder = "static/"
     try:
         if os.path.isfile(folder + fname):
             with open(folder + fname) as f:
@@ -156,8 +171,8 @@ def plot_structure_png(structure=None, h=None, k=None, l=None):
 
 @app.route("/dp_sim/img/<structure>_<h>_<k>_<l>_dp_plot.png")
 def plot_dp_png(structure=None, h=None, k=None, l=None):
-    fname = f'assets/img/dps/{structure}_{h}_{k}_{l}_dp_plot.svg'
-    folder = 'static/'
+    fname = f"assets/img/dps/{structure}_{h}_{k}_{l}_dp_plot.svg"
+    folder = "static/"
     try:
         if os.path.isfile(folder + fname):
             with open(folder + fname) as f:

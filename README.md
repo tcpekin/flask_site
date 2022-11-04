@@ -209,7 +209,7 @@ Current configuration notes
 ## TODO
 
 -   [x] HTTPS - via docker?
--   [ ] Logging/analytics
+-   [x] Logging/analytics
 -   [ ] `nginx` static files update
 -   [ ] Simulation **g** vectors
 -   [ ] Simulation table of most common zone axes
