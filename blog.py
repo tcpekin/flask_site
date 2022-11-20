@@ -105,7 +105,7 @@ def about():
 def dp_sim(structure=None, zone_axis=None):
     logger.info(f"{request.remote_addr} - {request.full_path} - {request.referrer}")
     print(zone_axis)
-    message = None
+    message = ""
     if request.args.get("structure") is not None and structure is None:
         try:
             structure = request.args.get("structure")
