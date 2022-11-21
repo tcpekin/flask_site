@@ -368,3 +368,5 @@ one step closer to being fully functional!
 2. [How long does it take for a changes to DNS to show up](https://kb.porkbun.com/article/33-how-long-will-it-take-for-changes-to-dns-to-show-up)
 3. [How to create a subdomain](https://kb.porkbun.com/article/200-how-to-create-a-subdomain)
 4. [What is my DNS resolving to... worldwide?](https://www.whatsmydns.net/#A/admin.tcpekin.com)
+
+[Part 9]({{ url_for('post', name='making_of_9') }})

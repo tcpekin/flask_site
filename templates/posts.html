@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 {% extends "layout.html" %} {% block body %}
 
-<table style="margin-top: 8px;">
+<table style="margin-top: 8px">
   {% for post in posts %}
   <tr>
-    <td style="white-space:nowrap;vertical-align: top;padding-right: 1rem;"><small>{{ post.date }}</small></td>
+    <td style="white-space: nowrap; vertical-align: top; padding-right: 1rem">
+      <small>{{ post.date }}</small>
+    </td>
     <td>
       <a
-        style="display: inline-block"
         href="{{ url_for('post', name=post.path.replace('posts/', '')) }}"
       >
         <strong>{{ post.title }}</strong>
