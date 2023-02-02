@@ -6,8 +6,10 @@
     Choose a crystal structure from the dropdown box or enter a
     <a href="https://materialsproject.org/">Materials Project</a> identifier
     (i.e. mp-81), as well as a three digit number <em>hkl</em> or for more
-    complex orientations, a comma-separated <em>h,k,l</em> zone axis:
+    complex orientations, a comma-separated <em>h,k,l</em> zone axis.
   </p>
+  <p>All simulations are done with 200 kV electrons.</p>
+
   <input type="text" list="structures" name="structure" placeholder="mp-81"
     pattern="mp-\d*" title="It should be something like mp-####" {% if structure
     is not none %} value="{{'{}'.format(structure)}}" {% endif %} required />
@@ -26,8 +28,6 @@
 
   <button class="pure-button pure-button-primary">Submit</button>
 </form>
-
-<p>All simulations are done with 200 kV electrons.</p>
 
 <!-- <br> -->
 {% if success == True %}
@@ -62,7 +62,7 @@
     href="https://github.com/tcpekin/flask_site/blob/c5f228b42cbfb61fa1b59372f00e37eff9a003d5/figs.py">source
     code</a>
   for plotting, which is built using
-  <a href="https://github.com/py4DSTEM/py4DSTEM">py4DSTEM</a>.
+  <a href="https://github.com/py4DSTEM/py4DSTEM">py4DSTEM</a>. Please send feedback, bugs, or suggestions to <a href="mailto:dp_feedback@tcpekin.com">dp_feedback@tcpekin.com</a>.
 </p>
 
 {% endblock %}
