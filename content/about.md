@@ -1,28 +1,27 @@
 title: Tom Pekin, PhD
 
-I am a a postdoc at the Humboldt Universität zu Berlin, where I am a member of
-Christoph Koch’s
+After 9 years in academia, I recently (Jan. 2023) switched to my current position as a Team
+Product Owner at the semiconductor mask solutions (SMS) branch of Carl Zeiss
+SMT, located in Jena, Germany. More info will come as I learn what I can talk
+about and not 🙃.
+
+Prior to the switch to industry, I was a a postdoc at the Humboldt Universität
+zu Berlin, where I was a member of Christoph Koch’s
 [Structure Research and Electron Microscopy](https://www.physics.hu-berlin.de/en/sem)
-group. I currently work on developing ptychographic methods using the electron
-microscope. Previously, I did my PhD under
-[Andrew Minor](https://aminor.mse.berkeley.edu/) at UC Berkeley and the National
-Center for Electron Microscopy, where I focused on method development at the
-intersection of electron microscopy and structural materials science.
+group. There I worked on developing ptychographic methods using electron
+microscopy and high-end STEM/EELS on a Nion UltraSTEM. Previously, I did my PhD
+under [Andrew Minor](https://aminor.mse.berkeley.edu/) at UC Berkeley and the
+National Center for Electron Microscopy, where I focused on method development
+at the intersection of electron microscopy and structural materials science.
 
-My research has focused on combining _in situ_ electron microscopy methods with
-high speed 4DSTEM techniques, with the hope of discovering new
-structure-property relationships that can then be exploited to improve material
-properties.
-
-My current research interests primarily focus on developing electron
-ptychography as an established and reliable method, which includes improving the
-reproducibility and ease of data acquisition, preprocessing, reconstruction, and
-analysis. Currently, that involves acquiring the data on a Nion UltraSTEM,
-streamlining the preprocessing in Python, and then reconstructing the object
-potential using [Adorym](https://github.com/mdw771/adorym). As long term goals,
-I hope to increase the speed of both acquisition and reconstruction, increase the
-robustness of the reconstruction of thick samples, and extend the technique to
-reliably reconstruct amorphous and/or beam sensitive samples.
+My research interests included electron ptychography and computational
+microscopy, as well as combining _in situ_ electron microscopy methods with
+4DSTEM techniques, with the hope of discovering new structure-property
+relationships that could then be exploited to improve material properties. I
+enjoyed working with diverse classes of materials, including catalytic
+materials, bulk metallic glasses, structural steels, and 2D materials like MoS2
+and graphene. I also enjoyed teaching and incorporating Python into physics and
+materials science courses and research.
 
 Outside of work I enjoy live music, various water sports, coding, and learning
 German.
