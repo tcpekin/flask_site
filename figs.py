@@ -15,7 +15,7 @@ from matplotlib.figure import Figure
 MP_API_KEY = os.environ.get("MP_API_KEY")
 
 # surpress plt.show warnings because using non-interactive backend - can change py4DSTEM to not automatically plt.show things too?
-warnings.filterwarnings("ignore", category=UserWarning)
+# warnings.filterwarnings("ignore", category=UserWarning)
 
 
 def get_mp_structure(structure="mp-81"):

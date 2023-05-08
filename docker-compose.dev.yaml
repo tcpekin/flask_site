@@ -25,7 +25,6 @@ services:
     init: true
     depends_on:
       - web
-      - shynet
   certbot:
     image: certbot/certbot
     volumes:

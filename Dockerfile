@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM continuumio/miniconda3 as conda
+FROM condaforge/mambaforge as conda
 
 COPY conda-linux-64.lock .
 # RUN conda update -y conda
