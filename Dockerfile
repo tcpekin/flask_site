@@ -1,10 +1,10 @@
 # syntax=docker/dockerfile:1
 
 FROM condaforge/mambaforge as conda
-
-COPY conda-linux-64.lock .
+RUN mamba install -c conda-forge conda-lock
+COPY conda-lock.yml .
 # RUN conda update -y conda
-RUN conda create -p /opt/env --copy --file conda-linux-64.lock
+RUN conda-lock install -p /opt/env --mamba --copy conda-lock.yml
 RUN conda clean -afy
 RUN conda init bash
 
