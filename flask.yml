@@ -4,7 +4,7 @@ channels:
   - defaults
 dependencies:
   - python-dotenv
-  - py4dstem
+  - py4dstem==0.13.17
   - pymatgen
   - gunicorn
   - flask-flatpages

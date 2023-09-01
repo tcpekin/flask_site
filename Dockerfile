@@ -14,4 +14,4 @@ COPY --from=conda /opt/env /opt/env
 
 COPY . .
 
-CMD [ "/opt/env/bin/gunicorn", "-w", "2", "--bind", "0.0.0.0:5001", "blog:app" ]
+CMD [ "/opt/env/bin/gunicorn", "-w", "2", "--max_requests", "10", "--timeout", '90', "--bind", "0.0.0.0:5001", "blog:app" ]
