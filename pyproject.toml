@@ -1,0 +1,24 @@
+[project]
+name = ""
+version = ""
+description = ""
+authors = [
+    {name = "Tom Pekin", email = "tcpekin@gmail.com"},
+    {name = "", email = ""},
+]
+dependencies = [
+    "py4dstem==0.13.17",
+    "python-dotenv>=1.0.0",
+    "gunicorn>=21.2.0",
+    "flask-flatpages",
+    "flask>=3.0.0",
+    "pandas>=2.1.2",
+    "plotly>=5.18.0",
+    "scipy>=1.11.3",
+    "h5py>=3.10.0",
+    "pymatgen==2023.8.10",
+]
+requires-python = ">=3.10,<3.11"
+readme = "README.md"
+license = {text = "MIT"}
+

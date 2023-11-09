@@ -1,0 +1,11 @@
+FROM python:3.10
+RUN pip install pdm
+COPY pdm.lock pyproject.toml .
+RUN pdm sync
+SHELL ["/bin/bash", "-c"]
+ENV PATH="/.venv/bin:$PATH"
+COPY . /flask_app
+
+WORKDIR /flask_app
+
+CMD ["gunicorn", "-w", "2", "--max-requests", "10", "--timeout", "90", "--bind", "0.0.0.0:5001", "blog:app"]

@@ -74,13 +74,6 @@ app.config.from_object(__name__)
 # should double check the following line to make sure that the correct number of proxies are set
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=0)
 
-# these can be uncommented in development to see what is going on in your app more easily
-if DEBUG is True:
-    from flask_debugtoolbar import DebugToolbarExtension
-
-    app.config["SECRET_KEY"] = "ASDF"
-    toolbar = DebugToolbarExtension(app)
-
 
 @app.route("/pygments.css")
 def pygments_css():
