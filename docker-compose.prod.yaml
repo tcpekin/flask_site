@@ -1,7 +1,8 @@
 services:
   web:
-    build: .
-    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile.pdm
     expose:
       - 5001
     env_file:
@@ -15,7 +16,6 @@ services:
         target: /logs
   nginx:
     build: ./services/nginx
-    platform: linux/amd64
     volumes:
       - ./services/certbot/conf:/etc/letsencrypt
       - ./services/certbot/www:/var/www/certbot
