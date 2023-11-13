@@ -9,11 +9,11 @@ services:
       - ./.env
     init: true
     volumes:
-      - ./static/assets/data/structures:/static/assets/data/structures
-      - ./static/assets/img/dps:/static/assets/img/dps
+      - /home/ubuntu/flask_site/static/assets/data/structures:/flask_app/static/assets/data/structures
+      - /home/ubuntu/flask_site/static/assets/img/dps:/flask_app/static/assets/img/dps
       - type: bind
         source: ./logs/
-        target: /logs
+        target: /flask_site/logs
   nginx:
     build: ./services/nginx
     volumes:
