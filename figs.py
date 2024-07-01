@@ -31,7 +31,10 @@ def get_mp_structure(structure="mp-81"):
         with MPRester(MP_API_KEY) as mpr:
             mp_structure = mpr.get_structure_by_material_id(structure)
         with open(structure_path, "w") as f:
-            json.dump(mp_structure.as_dict(), f)
+            if type(mp_structure) is not list:
+                json.dump(mp_structure.as_dict(), f)
+            else:
+                raise  ValueError(f"Crystal {structure} not in the Materials Project database, please choose a valid input.")
 
     return mp_structure
 
