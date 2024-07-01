@@ -55,6 +55,8 @@ This will output a file titled `conda-linux-64.lock`.
        port comes first. This can be more complex (auto-assignment, assigning
        ranges, etc. See documentation)
     4. `python-docker` is simply the tag of our image when we built it.
+10. A one-liner for building and running my current image/container:
+    `docker build -t my-pdm-app -f Dockerfile.pdm . && docker run -it -p 8000:5001 --rm my-pdm-app`
 
 After all this, I have switched to a Docker compose style deployment. Why is
 this? It is because Docker containers (to my knowledge) can only run/be left
@@ -199,12 +201,16 @@ Other useful links:
 -   [Fix Docker permissions](https://www.digitalocean.com/community/questions/how-to-fix-docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket)
 
 ## Analytics notes
-Currently using [Shynet](https://github.com/milesmcc/shynet). 
+
+Currently using [Shynet](https://github.com/milesmcc/shynet).
 
 Current configuration notes
-- Run on the same instance as blog - maybe not a great idea
-- Means we only need one `nginx` instance. 
-- `certbot`'s `init-letsencrypt.sh` file takes a list of domains defined within. Wildcard domains do not work, so you have to define each individually. 
+
+-   Run on the same instance as blog - maybe not a great idea
+-   Means we only need one `nginx` instance.
+-   `certbot`'s `init-letsencrypt.sh` file takes a list of domains defined
+    within. Wildcard domains do not work, so you have to define each
+    individually.
 
 ## TODO
 
