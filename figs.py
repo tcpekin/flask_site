@@ -34,7 +34,7 @@ def get_mp_structure(structure="mp-81"):
             if type(mp_structure) is not list:
                 json.dump(mp_structure.as_dict(), f)
             else:
-                raise  ValueError(f"Crystal {structure} not in the Materials Project database, please choose a valid input.")
+                raise  ValueError(f"Crystal {structure} is not in the Materials Project database, please choose a valid input.")
 
     return mp_structure
 
