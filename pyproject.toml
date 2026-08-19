@@ -1,12 +1,12 @@
 [project]
-name = ""
-version = ""
-description = ""
+name = "flask-site"
+version = "0.1.0"
+description = "Personal Flask site"
 authors = [
-    {name = "Tom Pekin", email = "tcpekin@gmail.com"},
-    {name = "", email = ""},
+    { name = "Tom Pekin", email = "tcpekin@gmail.com" },
 ]
 dependencies = [
+    "numpy>=1.26.4,<2.0",
     "py4dstem==0.13.17",
     "python-dotenv>=1.0.0",
     "gunicorn>=21.2.0",
@@ -17,10 +17,15 @@ dependencies = [
     "scipy>=1.11.3",
     "pymatgen>=2023.8.10",
     "mp-api>=0.41.2",
-    "h5py==3.10",
+    "h5py==3.10.0",
 ]
 requires-python = ">=3.10,<3.11"
 readme = "README.md"
-license = {text = "MIT"}
+license = { text = "MIT" }
 
-[tool.pdm]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+package = false

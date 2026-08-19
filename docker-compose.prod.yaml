@@ -2,7 +2,7 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile.pdm
+      dockerfile: Dockerfile.uv
     expose:
       - 5001
     env_file:

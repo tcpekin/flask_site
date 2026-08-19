@@ -1,12 +1,30 @@
+# Python / environment
 __pycache__/
-assets/*
-!assets/img/*
+*.py[cod]
+.venv/
+.venv*/
+.python-version
+.mypy_cache/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Local tooling
 .prettierrc
-.vscode/*
+.vscode/
+
+# Secrets / local state
+.env
+.env.*
+.DS_Store
+logs/
+
+# Generated or machine-local assets
+static/assets/data/structures/*.json
+static/assets/img/dps/
+
+# Misc
+*.psd
+*.svg
 profile.png
 Tom_Pekin_CV.pdf
 UC_Berkeley_Thesis_compressed.pdf
-.env
-.DS_Store
-*.psd
-*.svg

@@ -56,7 +56,7 @@ This will output a file titled `conda-linux-64.lock`.
        ranges, etc. See documentation)
     4. `python-docker` is simply the tag of our image when we built it.
 10. A one-liner for building and running my current image/container:
-    `docker build -t my-pdm-app -f Dockerfile.pdm . && docker run -it -p 8000:5001 --rm my-pdm-app`
+    `docker build -t my-uv-app -f Dockerfile.uv . && docker run -it -p 8000:5001 --rm my-uv-app`
 
 After all this, I have switched to a Docker compose style deployment. Why is
 this? It is because Docker containers (to my knowledge) can only run/be left
