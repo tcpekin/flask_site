@@ -12,6 +12,8 @@ RUN conda init bash
 FROM gcr.io/distroless/base-debian10
 COPY --from=conda /opt/env /opt/env
 
+ENV PYTHONPATH=/workspace
+WORKDIR /workspace
 COPY . .
 
 CMD ["/opt/env/bin/gunicorn", "-w", "2", "--max-requests", "10", "--timeout", "90", "--bind", "0.0.0.0:5001", "blog:app"]
