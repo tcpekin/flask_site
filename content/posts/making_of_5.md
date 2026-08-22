@@ -5,7 +5,7 @@ description: Setting up tcpekin.com
 tags: [python, web, making_of, flask, domain]
 ---
 
-[Part 4]({{ url_for('post', name='making_of_4') }})
+[Part 4](/posts/making_of_4/)
 
 The next part was paradoxically not so hard. I did a lot of ~~research~~
 googling about to figure out who the best domain registrar was, and the
@@ -71,4 +71,4 @@ Next up - better analytics, HTTP**S** (so far extremely stupidly hard with
 serve blog pages ☹️). I guess that means I might learn some database skills,
 whether I want to or not.
 
-[Part 6]({{ url_for('post', name='making_of_6') }})
+[Part 6](/posts/making_of_6/)

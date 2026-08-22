@@ -17,7 +17,7 @@ tags:
     ]
 ---
 
-[Part 5]({{ url_for('post', name='making_of_5') }})
+[Part 5](/posts/making_of_5/)
 
 _Note, this page will only work with Javascript... sorry._
 
@@ -137,7 +137,7 @@ However, I didn't want to return a rendered template from my route, but rather
 just the JSON that could then be requested. In order to do so, I added
 `from flask import Response`, and then replaced the return line with
 `return Response(graphJSON, mimetype="application/json")`. Now, if you
-[visit](<{{url_for('covid_graph')}}>) the endpoint that I was building, you'll
+[visit](/covid_graph/) the endpoint that I was building, you'll
 see that it's just a JSON response. Creating the response was now complete.
 
 ### Flatpages (markdown) + JavaScript + jQuery 😥
@@ -189,7 +189,7 @@ at all, I kind of hacked something together. In my understanding, the
 function/callback `.done` runs upon a successful completion of getting the JSON,
 and so I put my plotting code there. If the JSON isn't retrieved, it won't plot.
 
-*Edit - I have added more explanation to what jQuery is doing/how it works in the [next post]({{ url_for('post', name='making_of_6_quick_note') }}).*
+*Edit - I have added more explanation to what jQuery is doing/how it works in the [next post](/posts/making_of_6_quick_note/).*
 
 The `.done` function somehow has an input `data` from the `getJSON` function -
 this I don't understand at all. But I can create a variable `layout` for Plotly,
@@ -394,4 +394,4 @@ particular order:
 5. [Berlin Covid data source](https://www.berlin.de/lageso/gesundheit/infektionskrankheiten/corona/tabelle-indikatoren-gesamtuebersicht/)
 6. [p5.js - another visualization library I want to try out... but javascript 😭](https://p5js.org/)
 
-[Part 6.1]({{ url_for('post', name='making_of_6_quick_note') }})
+[Part 6.1](/posts/making_of_6_quick_note/)

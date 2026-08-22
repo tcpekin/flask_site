@@ -17,7 +17,7 @@ tags:
     ]
 ---
 
-[Part 6.1]({{ url_for('post', name='making_of_6_quick_note') }})
+[Part 6.1](/posts/making_of_6_quick_note/)
 
 Once upon a time, this site was running (just fine, I might add) using HTTP. I
 don't currently do anything with user data, outside of getting crystal
@@ -65,7 +65,7 @@ as to why sites should use HTTPS. In my case, implementing it
     vary
 
 With that in mind, right after I [registered my
-domain]({{ url_for('post', name='making_of_5') }}), I saw that you could
+domain](/posts/making_of_5/), I saw that you could
 download a SSL certificate bundle and use it to secure your site. Thanks
 Porkbun, that sounds like exactly what I wanted!
 
@@ -458,4 +458,4 @@ had to let them scroll. And that's the state of the project 🗼.
 8. [Flask HTTPS notes, without Docker](https://blog.miguelgrinberg.com/post/running-your-flask-application-over-https/page/0)
 
 
-[Part 8]({{ url_for('post', name='making_of_8') }})
+[Part 8](/posts/making_of_8/)

@@ -5,7 +5,7 @@ description: Initially working with Flask
 tags: [python, web, making_of, flask]
 ---
 
-[Part 1]({{ url_for('post', name='making_of_1') }})
+[Part 1](/posts/making_of_1/)
 
 The whole site source code can be seen
 [here](https://github.com/tcpekin/flask_site), and I'll link to specific parts
@@ -120,4 +120,4 @@ However, at this point, everything was running well locally - structures could
 be pulled in from the Materials Project, then their corresponding orientations
 and diffraction patterns were simulated, and finally served up as SVG images!
 
-[Part 3]({{ url_for('post', name='making_of_3') }})
+[Part 3](/posts/making_of_3/)

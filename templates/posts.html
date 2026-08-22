@@ -9,7 +9,7 @@
     </td>
     <td>
       <a
-        href="{{ url_for('post', name=post.path.replace('posts/', '')) }}"
+        href="{{ url_for('site.post', name=post.path.replace('posts/', '')) }}"
       >
         <strong>{{ post.title }}</strong>
       </a>

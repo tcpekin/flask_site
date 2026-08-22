@@ -3,7 +3,7 @@
 {% extends 'layout.html' %} 
 
 {% block head %}
-<link rel="stylesheet" href="{{ url_for('pygments_css') }}">
+<link rel="stylesheet" href="{{ url_for('visualizations.pygments_css') }}">
 {%  endblock %}
 
 {% block body %}
@@ -13,7 +13,7 @@
 
   <small> {{ post.date }} <br />
     {% for post_tag in post.meta.tags %}
-    <a href="{{ url_for("tag", tag=post_tag) }}">{{ post_tag }}</a>
+    <a href="{{ url_for('site.tag', tag=post_tag) }}">{{ post_tag }}</a>
     {% endfor %}
   </small>
   

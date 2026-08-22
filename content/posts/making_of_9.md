@@ -23,7 +23,7 @@ tags:
     ]
 ---
 
-[Part 8]({{ url_for('post', name='making_of_8') }})
+[Part 8](/posts/making_of_8/)
 
 To catch everyone up, at the end of the last post I had set up analytics to run
 on the same server that serves my site, by updating the Docker container
@@ -89,7 +89,7 @@ Clicking on the "Change Shape" button brings up the following screen:
 </figure>
 
 After specifying the configuration, you download the SSH key (as [previously
-mentioned]({{ url_for('post', name='making_of_3') }})), and you have a now much
+mentioned](/posts/making_of_3/)), and you have a now much
 more powerful server!
 
 <figure>
@@ -103,7 +103,7 @@ Setting up shynet was much easier when it had it's own server. I mainly followed
 the documentation pretty much exactly, and added `certbot` to manage HTTPS,
 which was a pain. I had the same problem with `0001` being appended to
 certificates' names, which was fixed the same was as it was
-[before]({{ url_for('post', name='making_of_8') }}).
+[before](/posts/making_of_8/).
 
 ### Ampere footguns
 

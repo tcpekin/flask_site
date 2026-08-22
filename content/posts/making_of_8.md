@@ -18,9 +18,9 @@ tags:
     ]
 ---
 
-[Part 7]({{ url_for('post', name='making_of_7') }})
+[Part 7](/posts/making_of_7/)
 
-Back in [Part 4]({{ url_for('post', name='making_of_4') }}), I wrote about my
+Back in [Part 4](/posts/making_of_4/), I wrote about my
 experiences with logging, using Python's built-in logger to just record IP
 addresses of everyone who visited a site. It was pretty naive, and lots of
 better analytics solutions exist, so it has been on my `README.md` TODO list for
@@ -293,7 +293,7 @@ to go.
 HTTPS was trickier. In the end I had to
 [add `admin.tcpekin.com`](https://github.com/tcpekin/flask_site/commit/0536d8d63922120418ffde1d85b188226d347d78#diff-bb5e9937ffd5eed91baab57dfcc0ed90a7cd9929f4325f260831190388746c2a)
 to my list of domains in my `init-letsencrypt.sh` script from [Part
-7]({{ url_for('post', name='making_of_7') }}), and redownload the certificates.
+7](/posts/making_of_7/), and redownload the certificates.
 To do so, I did a couple of things, and I'm not sure which was the silver
 bullet.
 
@@ -369,4 +369,4 @@ one step closer to being fully functional!
 3. [How to create a subdomain](https://kb.porkbun.com/article/200-how-to-create-a-subdomain)
 4. [What is my DNS resolving to... worldwide?](https://www.whatsmydns.net/#A/admin.tcpekin.com)
 
-[Part 9]({{ url_for('post', name='making_of_9') }})
+[Part 9](/posts/making_of_9/)

@@ -5,7 +5,7 @@ description: Adding logs is a lot more complicated than I thought
 tags: [python, web, making_of, flask, gunicorn, docker, nginx, cloud]
 ---
 
-[Part 3]({{ url_for('post', name='making_of_3') }})
+[Part 3](/posts/making_of_3/)
 
 As of this writing, I still haven't purchased a domain name and therefore the
 site is only accessible via direct IP address. Despite that, while I was looking
@@ -162,4 +162,4 @@ To improve it, as previously mentioned, I want to turn it into a decorator based
 system, as well as keep more header information (particularly if the requests
 are from robots or actual people... not sure how to figure that out yet).
 
-[Part 4]({{ url_for('post', name='making_of_4') }})
+[Part 4](/posts/making_of_4/)

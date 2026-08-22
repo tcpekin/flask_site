@@ -5,7 +5,7 @@ description: Sometimes the Flask development server just isn't enough
 tags: [python, web, making_of, flask, gunicorn, docker, nginx, cloud]
 ---
 
-[Part 2]({{ url_for('post', name='making_of_2') }})
+[Part 2](/posts/making_of_2/)
 
 At the end of my last post the site worked... locally. The next step was getting
 it on the internet, and to do that, there are a million different ways and

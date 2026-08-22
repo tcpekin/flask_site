@@ -43,12 +43,12 @@
 <div class="pure-g dp-grid">
   <div class="pure-u-4-5">
     <img class="pure-img dp-img"
-      src="{{url_for('plot_dp_png', structure=structure, h=h, k=k, l=l)}}"
+      src="{{ url_for('visualizations.plot_dp_png', structure=structure, h=h, k=k, l=l) }}"
       alt="Diffraction Pattern" />
   </div>
   <div class="pure-u-1-5">
     <img class="pure-img dp-img"
-      src="{{url_for('plot_structure_png', structure=structure, h=h, k=k, l=l)}}"
+      src="{{ url_for('visualizations.plot_structure_png', structure=structure, h=h, k=k, l=l) }}"
       alt="Crystal Structure" />
   </div>
 </div>

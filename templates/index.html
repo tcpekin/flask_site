@@ -6,9 +6,9 @@
 {% endblock %} {% block body %}
 
 <p>
-  A place for <a href="{{url_for('posts')}}">notes</a>,
-  <a href="{{url_for('dp_sim')}}">experiments</a>, and a little bit
-  <a href="{{url_for('about')}}">about</a> myself.
+  A place for <a href="{{ url_for('site.posts') }}">notes</a>,
+  <a href="{{ url_for('visualizations.dp_sim') }}">experiments</a>, and a little bit
+  <a href="{{ url_for('site.about') }}">about</a> myself.
 </p>
 <p>As always, a work in progress.</p>
 

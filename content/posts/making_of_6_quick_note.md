@@ -6,13 +6,13 @@ tags:
     [python, web, making_of, flask, plotly, flask_flatpages, javascript, jQuery]
 ---
 
-[Part 6]({{ url_for('post', name='making_of_6') }})
+[Part 6](/posts/making_of_6/)
 
 It's a short post today, based on some conversations I've had with Pablo.
 Hopefully it helps me remember how jQuery works and maybe anyone else who was
 just as lost as I was.
 
-In the [last post]({{ url_for('post', name='making_of_6') }}), I wrote:
+In the [last post](/posts/making_of_6/), I wrote:
 
 > Then comes the script that loads the plot - I get the data using jQuery's
 > `.getJSON` function. (`$` stands for jQuery, which has always been confusing
@@ -149,7 +149,7 @@ the the desired URL, correctly formatted as JSON.
 ### Using the browser console to test code
 
 One thing that is handy is to play around with this in the browser console. If
-you open the [last post]({{ url_for('post', name='making_of_6') }}) and
+you open the [last post](/posts/making_of_6/) and
 [open the browser console](https://balsamiq.com/support/faqs/browserconsole/),
 jQuery will be loaded and you can run something like
 
@@ -167,7 +167,7 @@ the JSON response is correctly getting passed to whatever variable you declare!
 Mystery solved. I'm not entirely looking forward to a lot more jQuery/Javascript
 in my future, but slowly things fit a little bit better together.
 
-[Part 7]({{ url_for('post', name='making_of_7') }})
+[Part 7](/posts/making_of_7/)
 
 ## Links
 
