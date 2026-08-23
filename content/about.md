@@ -1,9 +1,17 @@
 title: Tom Pekin, PhD
 
-After 9 years in academia, I recently (Jan. 2023) switched to my current position as a Team
-Product Owner at the semiconductor mask solutions (SMS) branch of Carl Zeiss
-SMT, located in Jena, Germany. More info will come as I learn what I can talk
-about and not 🙃.
+For the last three years I've been working at Carl Zeiss SMT in Jena, Germany.
+I'm product owner for the 
+[PROVE](https://www.zeiss.com/semiconductor-manufacturing-technology/products/photomask-solutions/mask-metrology.html) 
+microscope, which makes sure patterns that are used for making computer chips
+are in the correct location. It's been a steep learning curve from my previous
+position in R&D, but it has been very fulfilling to actually meet customers,
+understand how our tools are used in semiconductor production, and expand my 
+skills in communication and stakeholder management. It's been very interesting 
+to see the various parts of Zeiss work together as well, how sales leads to R&D 
+developments, which get built by Operations, and installed and serviced by 
+service. It's somewhat amazing that these machines get built at all :).
+ 
 
 Prior to the switch to industry, I was a a postdoc at the Humboldt Universität
 zu Berlin, where I was a member of Christoph Koch’s
@@ -23,8 +31,8 @@ materials, bulk metallic glasses, structural steels, and 2D materials like MoS2
 and graphene. I also enjoyed teaching and incorporating Python into physics and
 materials science courses and research.
 
-Outside of work I enjoy live music, various water sports, coding, and learning
-German.
+Outside of work I enjoy live music, staying active, whether that's running, yoga, 
+biking, volleyball, etc. I also enjoy reading and DJing at home.
 
 <a target="_blank" href="static/assets/Tom_Pekin_Short_Resume.pdf">
 resume
