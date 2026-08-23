@@ -16,4 +16,4 @@ ENV PYTHONPATH=/workspace
 WORKDIR /workspace
 COPY . .
 
-CMD ["/opt/env/bin/gunicorn", "-w", "2", "--max-requests", "10", "--timeout", "90", "--bind", "0.0.0.0:5001", "blog:app"]
+CMD ["/opt/env/bin/gunicorn", "--chdir", "/workspace", "--pythonpath", "/workspace", "-w", "2", "--max-requests", "10", "--timeout", "90", "--bind", "0.0.0.0:5001", "blog:app"]

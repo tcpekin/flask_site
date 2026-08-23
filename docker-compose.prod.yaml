@@ -3,6 +3,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.uv
+    working_dir: /flask_app
+    command: ["uv", "run", "gunicorn", "--chdir", "/flask_app", "--pythonpath", "/flask_app", "-w", "4", "--max-requests", "100", "--timeout", "20", "--bind", "0.0.0.0:5001", "blog:app"]
     expose:
       - 5001
     env_file:
